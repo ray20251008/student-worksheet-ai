@@ -36,8 +36,6 @@
   .box-empty { height: 50px; } /* 訂正區 */
   
   .box-char { height: 90px; font-family: 'Noto Serif TC', serif; font-size: 40px; display: flex; flex-direction: row-reverse; justify-content: center; align-items: center; padding: 5px; }
-  .ruby-text { display: flex; flex-direction: row-reverse; align-items: center; }
-  .zhuyin { font-size: 14px; writing-mode: vertical-rl; margin-right: 5px; font-family: sans-serif; letter-spacing: 2px; }
   
   .box-meta { height: 80px; font-size: 12px; writing-mode: vertical-rl; text-align: center; padding: 5px; line-height: 1.2; }
   
@@ -55,9 +53,7 @@
   /* Math */
   .math-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-top: 15px; }
   .m-card { border: 1px solid #ddd; padding: 15px; border-radius: 8px; background: #fafafa; page-break-inside: avoid; }
-  .m-q { margin-bottom: 10px; line-height: 1.5; font-size: 0.95rem; }
-  .m-ans { color: #888; font-size: 0.9rem; }
-  .m-ans span { display: inline-block; width: 80px; border-bottom: 1px solid #666; }
+  .m-q { margin-bottom: 10px; line-height: 1.5; font-size: 1.1rem; letter-spacing: 1px; }
 
   .print-btn { display: block; margin: 20px auto; background: #2D6A4F; color: white; padding: 10px 30px; text-align: center; text-decoration: none; border-radius: 20px; width: 150px; cursor: pointer; border: none; font-size: 1.1rem; }
   .answer-key { margin-top: 40px; padding: 20px; background: #fdf5e6; border: 1px dashed #d4a373; border-radius: 8px; page-break-inside: avoid; }
@@ -103,46 +99,26 @@
 
   <div class="section-title">🔢 數學練習：混合算術 (共20題)</div>
   <div class="math-grid">
-    <div class="m-card"><div class="m-q">1. &nbsp;&nbsp; 350 × 8 = ( &nbsp;&nbsp;&nbsp;&nbsp; )</div></div>
-    <div class="m-card"><div class="m-q">2. &nbsp;&nbsp; 300 × 2 = ( &nbsp;&nbsp;&nbsp;&nbsp; )</div></div>
-    <div class="m-card"><div class="m-q">3. &nbsp;&nbsp; 1200 ÷ 2 = ( &nbsp;&nbsp;&nbsp;&nbsp; )</div></div>
-    <div class="m-card"><div class="m-q">4. &nbsp;&nbsp; 50 × 4 = ( &nbsp;&nbsp;&nbsp;&nbsp; )</div></div>
-    <div class="m-card"><div class="m-q">5. &nbsp;&nbsp; 500 - 125 - 175 = ( &nbsp;&nbsp;&nbsp;&nbsp; )</div></div>
-    <div class="m-card"><div class="m-q">6. &nbsp;&nbsp; 800 - 600 = ( &nbsp;&nbsp;&nbsp;&nbsp; )</div></div>
-    <div class="m-card"><div class="m-q">7. &nbsp;&nbsp; 20 + 50 + 30 = ( &nbsp;&nbsp;&nbsp;&nbsp; )</div></div>
-    <div class="m-card"><div class="m-q">8. &nbsp;&nbsp; 210 × 4 - 50 = ( &nbsp;&nbsp;&nbsp;&nbsp; )</div></div>
-    <div class="m-card"><div class="m-q">9. &nbsp;&nbsp; (250 - 100) ÷ 50 = ( &nbsp;&nbsp;&nbsp;&nbsp; )</div></div>
-    <div class="m-card"><div class="m-q">10. &nbsp; 600 ÷ 3 = ( &nbsp;&nbsp;&nbsp;&nbsp; )</div></div>
-    <div class="m-card"><div class="m-q">11. &nbsp; 500 - (120 + 130) = ( &nbsp;&nbsp;&nbsp;&nbsp; )</div></div>
-    <div class="m-card"><div class="m-q">12. &nbsp; 890 - 650 = ( &nbsp;&nbsp;&nbsp;&nbsp; )</div></div>
-    <div class="m-card"><div class="m-q">13. &nbsp; 1500 ÷ 3 = ( &nbsp;&nbsp;&nbsp;&nbsp; )</div></div>
-    <div class="m-card"><div class="m-q">14. &nbsp; 64 - 2 - 15 = ( &nbsp;&nbsp;&nbsp;&nbsp; )</div></div>
-    <div class="m-card"><div class="m-q">15. &nbsp; 5 × 3 = ( &nbsp;&nbsp;&nbsp;&nbsp; )</div></div>
-    <div class="m-card"><div class="m-q">16. &nbsp; 15 × 30 = ( &nbsp;&nbsp;&nbsp;&nbsp; )</div></div>
-    <div class="m-card"><div class="m-q">17. &nbsp; 280 - (20 × 3) = ( &nbsp;&nbsp;&nbsp;&nbsp; )</div></div>
-    <div class="m-card"><div class="m-q">18. &nbsp; 50 - 20 + 100 = ( &nbsp;&nbsp;&nbsp;&nbsp; )</div></div>
-    <div class="m-card"><div class="m-q">19. &nbsp; 20 × 15 = ( &nbsp;&nbsp;&nbsp;&nbsp; )</div></div>
-    <div class="m-card"><div class="m-q">20. &nbsp; 900 - (250 + 600) = ( &nbsp;&nbsp;&nbsp;&nbsp; )</div></div>
-  </div><div class="m-ans">算式：<span></span> = <span></span></div></div>
-    <div class="m-card"><div class="m-q">2. 哥哥每月存300元，存了兩個月後，買了一雙450元的運動鞋，他還剩下多少元？</div><div class="m-ans">算式：<span></span> = <span></span></div></div>
-    <div class="m-card"><div class="m-q">3. 媽媽給了兄妹兩人共1200元零用錢，平分給2個人，每人可以分到多少元？</div><div class="m-ans">算式：<span></span> = <span></span></div></div>
-    <div class="m-card"><div class="m-q">4. 維維每週存50元，一個月有4週，她一個月可以存多少元？</div><div class="m-ans">算式：<span></span> = <span></span></div></div>
-    <div class="m-card"><div class="m-q">5. 畫冊原本限量500本，第一天送出125本，第二天送出175本，還剩下幾本？</div><div class="m-ans">算式：<span></span> = <span></span></div></div>
-    <div class="m-card"><div class="m-q">6. 哥哥想存800元，現在已經存了600元，他還差多少元就能達到目標？</div><div class="m-ans">算式：<span></span> = <span></span></div></div>
-    <div class="m-card"><div class="m-q">7. 維維第一週存20元，第二週存50元，第三週沒有存，第四週存了30元，她這個月總共存了多少元？</div><div class="m-ans">算式：<span></span> = <span></span></div></div>
-    <div class="m-card"><div class="m-q">8. 一套新書共有4本，每本售價210元，買整套可以折抵50元，買整套要多少元？</div><div class="m-ans">算式：<span></span> = <span></span></div></div>
-    <div class="m-card"><div class="m-q">9. 撲滿裡有250元，其中有100元是鈔票，剩下的都是50元硬幣，請問有幾個50元硬幣？</div><div class="m-ans">算式：<span></span> = <span></span></div></div>
-    <div class="m-card"><div class="m-q">10. 哥哥把600元平分成3份，其中1份拿去買文具，買文具花了多少元？</div><div class="m-ans">算式：<span></span> = <span></span></div></div>
-    <div class="m-card"><div class="m-q">11. 軟體紀錄上，維維第一個月存了120元，第二個月存了130元，她距離500元的目標還差多少？</div><div class="m-ans">算式：<span></span> = <span></span></div></div>
-    <div class="m-card"><div class="m-q">12. 運動鞋原價890元，現在特價只要650元，便宜了多少元？</div><div class="m-ans">算式：<span></span> = <span></span></div></div>
-    <div class="m-card"><div class="m-q">13. 媽媽把1500元平分給3個孩子，每人拿到多少元？</div><div class="m-ans">算式：<span></span> = <span></span></div></div>
-    <div class="m-card"><div class="m-q">14. 維維的平板電腦原本有64GB的空間，下載記帳軟體用掉了2GB，又下載遊戲用掉了15GB，還剩下多少GB？</div><div class="m-ans">算式：<span></span> = <span></span></div></div>
-    <div class="m-card"><div class="m-q">15. 報紙廣告上有5本書，每本厚度是3公分，把它們疊在一起，總共厚幾公分？</div><div class="m-ans">算式：<span></span> = <span></span></div></div>
-    <div class="m-card"><div class="m-q">16. 哥哥每天節省開銷存下15元，30天後他可以存多少元？</div><div class="m-ans">算式：<span></span> = <span></span></div></div>
-    <div class="m-card"><div class="m-q">17. 一張折價券可以折抵20元，維維有3張，她買一本280元的書，最後要付多少元？</div><div class="m-ans">算式：<span></span> = <span></span></div></div>
-    <div class="m-card"><div class="m-q">18. 撲滿本來是空的，維維第一天放進去50元，第二天拿出來20元，第三天又放進去100元，現在裡面有多少元？</div><div class="m-ans">算式：<span></span> = <span></span></div></div>
-    <div class="m-card"><div class="m-q">19. 新書發表會的場地有20排座位，每排有15個位子，總共可以坐多少人？</div><div class="m-ans">算式：<span></span> = <span></span></div></div>
-    <div class="m-card"><div class="m-q">20. 維維存了250元，哥哥存了600元，兩人合起來的錢，夠不夠買一套900元的套書？相差多少元？</div><div class="m-ans">算式：<span></span> = <span></span></div></div>
+    <div class="m-card"><div class="m-q">1. &nbsp; 350 × 8 = ( &nbsp;&nbsp;&nbsp;&nbsp; )</div></div>
+    <div class="m-card"><div class="m-q">2. &nbsp; 300 × 2 = ( &nbsp;&nbsp;&nbsp;&nbsp; )</div></div>
+    <div class="m-card"><div class="m-q">3. &nbsp; 1200 ÷ 2 = ( &nbsp;&nbsp;&nbsp;&nbsp; )</div></div>
+    <div class="m-card"><div class="m-q">4. &nbsp; 50 × 4 = ( &nbsp;&nbsp;&nbsp;&nbsp; )</div></div>
+    <div class="m-card"><div class="m-q">5. &nbsp; 500 - 125 - 175 = ( &nbsp;&nbsp;&nbsp;&nbsp; )</div></div>
+    <div class="m-card"><div class="m-q">6. &nbsp; 800 - 600 = ( &nbsp;&nbsp;&nbsp;&nbsp; )</div></div>
+    <div class="m-card"><div class="m-q">7. &nbsp; 20 + 50 + 30 = ( &nbsp;&nbsp;&nbsp;&nbsp; )</div></div>
+    <div class="m-card"><div class="m-q">8. &nbsp; 210 × 4 - 50 = ( &nbsp;&nbsp;&nbsp;&nbsp; )</div></div>
+    <div class="m-card"><div class="m-q">9. &nbsp; (250 - 100) ÷ 50 = ( &nbsp;&nbsp;&nbsp;&nbsp; )</div></div>
+    <div class="m-card"><div class="m-q">10. 600 ÷ 3 = ( &nbsp;&nbsp;&nbsp;&nbsp; )</div></div>
+    <div class="m-card"><div class="m-q">11. 500 - (120 + 130) = ( &nbsp;&nbsp;&nbsp;&nbsp; )</div></div>
+    <div class="m-card"><div class="m-q">12. 890 - 650 = ( &nbsp;&nbsp;&nbsp;&nbsp; )</div></div>
+    <div class="m-card"><div class="m-q">13. 1500 ÷ 3 = ( &nbsp;&nbsp;&nbsp;&nbsp; )</div></div>
+    <div class="m-card"><div class="m-q">14. 64 - 2 - 15 = ( &nbsp;&nbsp;&nbsp;&nbsp; )</div></div>
+    <div class="m-card"><div class="m-q">15. 5 × 3 = ( &nbsp;&nbsp;&nbsp;&nbsp; )</div></div>
+    <div class="m-card"><div class="m-q">16. 15 × 30 = ( &nbsp;&nbsp;&nbsp;&nbsp; )</div></div>
+    <div class="m-card"><div class="m-q">17. 280 - (20 × 3) = ( &nbsp;&nbsp;&nbsp;&nbsp; )</div></div>
+    <div class="m-card"><div class="m-q">18. 50 - 20 + 100 = ( &nbsp;&nbsp;&nbsp;&nbsp; )</div></div>
+    <div class="m-card"><div class="m-q">19. 20 × 15 = ( &nbsp;&nbsp;&nbsp;&nbsp; )</div></div>
+    <div class="m-card"><div class="m-q">20. 900 - (250 + 600) = ( &nbsp;&nbsp;&nbsp;&nbsp; )</div></div>
   </div>
 
   <div class="answer-key">
@@ -173,7 +149,7 @@
 </div>
 
 <script>
-  const charsData = [{"c": "近", "z": "ㄐㄧㄣˋ", "r": "辵", "s": "8"}, {"c": "報", "z": "ㄅㄠˋ", "r": "土", "s": "12"}, {"c": "紙", "z": "ㄓˇ", "r": "糸", "s": "10"}, {"c": "廣", "z": "ㄍㄨㄤˇ", "r": "广", "s": "15"}, {"c": "告", "z": "ㄍㄠˋ", "r": "口", "s": "7"}, {"c": "覺", "z": "ㄐㄩㄝˊ", "r": "見", "s": "20"}, {"c": "最", "z": "ㄗㄨㄟˋ", "r": "曰", "s": "12"}, {"c": "愛", "z": "ㄞˋ", "r": "心", "s": "13"}, {"c": "作", "z": "ㄗㄨㄛˋ", "r": "人", "s": "7"}, {"c": "者", "z": "ㄓㄜˇ", "r": "老", "s": "9"}, {"c": "新", "z": "ㄒㄧㄣ", "r": "斤", "s": "13"}, {"c": "書", "z": "ㄕㄨ", "r": "曰", "s": "10"}, {"c": "架", "z": "ㄐㄧㄚˋ", "r": "木", "s": "9"}, {"c": "版", "z": "ㄅㄢˇ", "r": "片", "s": "8"}, {"c": "社", "z": "ㄕㄜˋ", "r": "示", "s": "8"}, {"c": "甚", "z": "ㄕㄣˋ", "r": "甘", "s": "9"}, {"c": "推", "z": "ㄊㄨㄟ", "r": "手", "s": "11"}, {"c": "優", "z": "ㄧㄡ", "r": "人", "s": "17"}, {"c": "惠", "z": "ㄏㄨㄟˋ", "r": "心", "s": "12"}, {"c": "活", "z": "ㄏㄨㄛˊ", "r": "水", "s": "9"}, {"c": "動", "z": "ㄉㄨㄥˋ", "r": "力", "s": "11"}, {"c": "限", "z": "ㄒㄧㄢˋ", "r": "阜", "s": "9"}, {"c": "購", "z": "ㄍㄡˋ", "r": "貝", "s": "17"}, {"c": "但", "z": "ㄉㄢˋ", "r": "人", "s": "7"}, {"c": "享", "z": "ㄒㄧㄤˇ", "r": "亠", "s": "8"}, {"c": "折", "z": "ㄓㄜˊ", "r": "手", "s": "7"}, {"c": "扣", "z": "ㄎㄡˋ", "r": "手", "s": "6"}, {"c": "贈", "z": "ㄗㄥˋ", "r": "貝", "s": "19"}, {"c": "送", "z": "ㄙㄨㄥˋ", "r": "辵", "s": "10"}, {"c": "量", "z": "ㄌㄧㄤˋ", "r": "里", "s": "12"}, {"c": "畫", "z": "ㄏㄨㄚˋ", "r": "田", "s": "12"}, {"c": "冊", "z": "ㄘㄜˋ", "r": "冂", "s": "5"}, {"c": "原", "z": "ㄩㄢˊ", "r": "厂", "s": "10"}, {"c": "待", "z": "ㄉㄞˋ", "r": "彳", "s": "9"}, {"c": "哥", "z": "ㄍㄜ", "r": "口", "s": "10"}, {"c": "打", "z": "ㄉㄚˇ", "r": "手", "s": "5"}, {"c": "算", "z": "ㄙㄨㄢˋ", "r": "竹", "s": "14"}, {"c": "運", "z": "ㄩㄣˋ", "r": "辵", "s": "13"}, {"c": "鞋", "z": "ㄒㄧㄝˊ", "r": "革", "s": "15"}, {"c": "無", "z": "ㄨˊ", "r": "火", "s": "12"}, {"c": "法", "z": "ㄈㄚˇ", "r": "水", "s": "8"}, {"c": "失", "z": "ㄕ", "r": "大", "s": "5"}, {"c": "望", "z": "ㄨㄤˋ", "r": "月", "s": "11"}, {"c": "錯", "z": "ㄘㄨㄛˋ", "r": "金", "s": "16"}, {"c": "過", "z": "ㄍㄨㄛˋ", "r": "辵", "s": "13"}, {"c": "機", "z": "ㄐㄧ", "r": "木", "s": "16"}, {"c": "可", "z": "ㄎㄜˇ", "r": "口", "s": "5"}, {"c": "惜", "z": "ㄒㄧˊ", "r": "心", "s": "11"}, {"c": "決", "z": "ㄐㄩㄝˊ", "r": "水", "s": "7"}, {"c": "定", "z": "ㄉㄧㄥˋ", "r": "宀", "s": "8"}];
+  const charsData = [{"c": "近", "r": "辵", "s": "8"}, {"c": "報", "r": "土", "s": "12"}, {"c": "紙", "r": "糸", "s": "10"}, {"c": "廣", "r": "广", "s": "15"}, {"c": "告", "r": "口", "s": "7"}, {"c": "覺", "r": "見", "s": "20"}, {"c": "最", "r": "曰", "s": "12"}, {"c": "愛", "r": "心", "s": "13"}, {"c": "作", "r": "人", "s": "7"}, {"c": "者", "r": "老", "s": "9"}, {"c": "新", "r": "斤", "s": "13"}, {"c": "書", "r": "曰", "s": "10"}, {"c": "架", "r": "木", "s": "9"}, {"c": "版", "r": "片", "s": "8"}, {"c": "社", "r": "示", "s": "8"}, {"c": "甚", "r": "甘", "s": "9"}, {"c": "推", "r": "手", "s": "11"}, {"c": "優", "r": "人", "s": "17"}, {"c": "惠", "r": "心", "s": "12"}, {"c": "活", "r": "水", "s": "9"}, {"c": "動", "r": "力", "s": "11"}, {"c": "限", "r": "阜", "s": "9"}, {"c": "購", "r": "貝", "s": "17"}, {"c": "但", "r": "人", "s": "7"}, {"c": "享", "r": "亠", "s": "8"}, {"c": "折", "r": "手", "s": "7"}, {"c": "扣", "r": "手", "s": "6"}, {"c": "贈", "r": "貝", "s": "19"}, {"c": "送", "r": "辵", "s": "10"}, {"c": "量", "r": "里", "s": "12"}, {"c": "畫", "r": "田", "s": "12"}, {"c": "冊", "r": "冂", "s": "5"}, {"c": "原", "r": "厂", "s": "10"}, {"c": "待", "r": "彳", "s": "9"}, {"c": "哥", "r": "口", "s": "10"}, {"c": "打", "r": "手", "s": "5"}, {"c": "算", "r": "竹", "s": "14"}, {"c": "運", "r": "辵", "s": "13"}, {"c": "鞋", "r": "革", "s": "15"}, {"c": "無", "r": "火", "s": "12"}, {"c": "法", "r": "水", "s": "8"}, {"c": "失", "r": "大", "s": "5"}, {"c": "望", "r": "月", "s": "11"}, {"c": "錯", "r": "金", "s": "16"}, {"c": "過", "r": "辵", "s": "13"}, {"c": "機", "r": "木", "s": "16"}, {"c": "可", "r": "口", "s": "5"}, {"c": "惜", "r": "心", "s": "11"}, {"c": "決", "r": "水", "s": "7"}, {"c": "定", "r": "宀", "s": "8"}];
   const container = document.getElementById('vocab-container');
 
   charsData.forEach((d, i) => {
@@ -184,12 +160,9 @@
     // 訂正區
     col.innerHTML += `<div class="v-box box-empty"><div class="box-title">訂正</div></div>`;
     
-    // 生字與注音
+    // 生字 (無注音)
     col.innerHTML += `<div class="v-box box-char">
-      <div class="ruby-text">
         <span>${d.c}</span>
-        
-      </div>
     </div>`;
 
     // 部首筆畫
