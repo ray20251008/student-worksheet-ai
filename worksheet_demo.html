@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<title>四年級學習單：存錢大作戰</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@400;700;900&family=Noto+Sans+TC:wght@300;400;500;700&display=swap');
+  body { font-family: 'Noto Sans TC', sans-serif; background: #f0f4f0; color: #1a1a2e; }
+  .sheet { max-width: 860px; margin: 20px auto; background: white; padding: 40px; border-radius: 10px; box-shadow: 0 4px 10px rgba(0,0,0,0.1); }
+  h1 { text-align: center; color: #2D6A4F; font-family: 'Noto Serif TC', serif; }
+  .article { background: #E9F5EE; padding: 20px; border-left: 5px solid #2D6A4F; line-height: 1.8; font-size: 1.1rem; margin-bottom: 30px; }
+  .section-title { color: #2D6A4F; border-bottom: 2px solid #c8e6c9; padding-bottom: 5px; margin-top: 30px; font-weight: bold; font-size: 1.2rem; }
+  
+  /* Reading */
+  .q-list { list-style: none; padding: 0; }
+  .q-list li { margin-bottom: 15px; line-height: 1.6; }
+  .q-list li input { width: 100%; border: none; border-bottom: 1px solid #aaa; margin-top: 10px; outline: none; }
+
+  /* Vocab */
+  .vocab-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 15px; margin-top: 15px; }
+  .v-card { display: flex; border: 2px solid #c8e6c9; border-radius: 8px; overflow: hidden; }
+  .v-char { font-size: 2.5rem; width: 70px; display: flex; align-items: center; justify-content: center; border-right: 2px solid #c8e6c9; font-family: 'Noto Serif TC', serif; color: #2D6A4F; background: #fff; }
+  .v-info { padding: 10px; flex: 1; display: flex; flex-direction: column; justify-content: center; }
+  .v-word { font-weight: bold; margin-bottom: 5px; font-size: 1.1rem; color: #b74b4b; }
+  .v-meta { font-size: 0.85rem; color: #666; }
+  .btn-speak { margin-top: 5px; background: #F4A261; color: white; border: none; padding: 5px 10px; border-radius: 5px; cursor: pointer; width: fit-content; font-size: 0.8rem; }
+  .btn-speak:hover { background: #e08b4a; }
+
+  /* Math */
+  .math-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-top: 15px; }
+  .m-card { border: 1px solid #ddd; padding: 15px; border-radius: 8px; background: #fafafa; }
+  .m-q { margin-bottom: 10px; line-height: 1.5; font-size: 0.95rem; }
+  .m-ans { color: #888; font-size: 0.9rem; }
+  .m-ans span { display: inline-block; width: 80px; border-bottom: 1px solid #666; }
+
+  .print-btn { display: block; margin: 20px auto; background: #2D6A4F; color: white; padding: 10px 30px; text-align: center; text-decoration: none; border-radius: 20px; width: 150px; cursor: pointer; border: none; font-size: 1.1rem; }
+  @media print { .print-btn { display: none; } body { background: white; } .sheet { box-shadow: none; margin: 0; padding: 0; } }
+</style>
+<script>
+  function speak(text) {
+    const u = new SpeechSynthesisUtterance(text);
+    u.lang = 'zh-TW';
+    u.rate = 0.9;
+    window.speechSynthesis.speak(u);
+  }
+</script>
+</head>
+<body>
+
+<button class="print-btn" onclick="window.print()">🖨️ 列印學習單</button>
+
+<div class="sheet">
+  <h1>每週學習單：存錢大作戰</h1>
+  
+  <div class="article">
+    近，維維看到報紙廣告，發現她最愛的作者新書上架，出版社甚至推出優惠活動：時限內購書不但享有折扣，還贈送限量畫冊。<br><br>
+    維維原先期待哥哥會因為打折，提出兩人合買套書，沒想到哥哥近期已打算買運動鞋，所以無法出錢。<br><br>
+    維維很失望，又覺得錯過機會可惜，所以決定靠自己存錢買書。她想起之前社會課，老師曾教大家使用「記帳及存款」軟體管理零用錢，於是維維用家裡的平板下載並註冊，開始儲蓄。<br><br>
+    每個月五號，媽媽分別給維維和哥哥當月的零用錢。維維決定將總額按週次平分，再每週檢查零用錢餘額，把剩餘的錢存進撲滿，並以軟體記錄；哥哥則是先設定每月存錢目標，再精打細算，節省開銷。<br><br>
+    幾週後，維維發現她每次存款的金額不固定，有時存二十元，有時五十元，有時甚至一毛錢也沒存。<br><br>
+    兩個月後，維維和哥哥談起存錢心得，驚訝的發現這段時間哥哥已存下六百元，維維只有兩百五十元，讓她氣餒又難過，不曉得為什麼自己存了錢，卻還是離目標很遙遠。
+  </div>
+
+  <div class="section-title">❓ 閱讀測驗</div>
+  <ul class="q-list">
+    <li>1. 維維為什麼決定開始自己存錢？<br><input type="text"></li>
+    <li>2. 哥哥存錢的方法跟維維有什麼不同？<br><input type="text"></li>
+    <li>3. 為什麼兩個月後，哥哥存的錢比維維還要多？<br><input type="text"></li>
+  </ul>
+
+  <div class="section-title">✏️ 生字簿 (共50字)</div>
+  <div class="vocab-grid">
+    <!-- 1-10 -->
+    <div class="v-card"><div class="v-char">近</div><div class="v-info"><div class="v-word">近期</div><div class="v-meta">部首：辵 | 筆畫：8</div><button class="btn-speak" onclick="speak('近，近期')">🔊 朗讀</button></div></div>
+    <div class="v-card"><div class="v-char">報</div><div class="v-info"><div class="v-word">報紙</div><div class="v-meta">部首：土 | 筆畫：12</div><button class="btn-speak" onclick="speak('報，報紙')">🔊 朗讀</button></div></div>
+    <div class="v-card"><div class="v-char">紙</div><div class="v-info"><div class="v-word">紙張</div><div class="v-meta">部首：糸 | 筆畫：10</div><button class="btn-speak" onclick="speak('紙，紙張')">🔊 朗讀</button></div></div>
+    <div class="v-card"><div class="v-char">廣</div><div class="v-info"><div class="v-word">廣告</div><div class="v-meta">部首：广 | 筆畫：15</div><button class="btn-speak" onclick="speak('廣，廣告')">🔊 朗讀</button></div></div>
+    <div class="v-card"><div class="v-char">告</div><div class="v-info"><div class="v-word">告訴</div><div class="v-meta">部首：口 | 筆畫：7</div><button class="btn-speak" onclick="speak('告，告訴')">🔊 朗讀</button></div></div>
+    <div class="v-card"><div class="v-char">覺</div><div class="v-info"><div class="v-word">覺得</div><div class="v-meta">部首：見 | 筆畫：20</div><button class="btn-speak" onclick="speak('覺，覺得')">🔊 朗讀</button></div></div>
+    <div class="v-card"><div class="v-char">愛</div><div class="v-info"><div class="v-word">喜愛</div><div class="v-meta">部首：心 | 筆畫：13</div><button class="btn-speak" onclick="speak('愛，喜愛')">🔊 朗讀</button></div></div>
+    <div class="v-card"><div class="v-char">作</div><div class="v-info"><div class="v-word">作者</div><div class="v-meta">部首：人 | 筆畫：7</div><button class="btn-speak" onclick="speak('作，作者')">🔊 朗讀</button></div></div>
+    <div class="v-card"><div class="v-char">者</div><div class="v-info"><div class="v-word">讀者</div><div class="v-meta">部首：老 | 筆畫：9</div><button class="btn-speak" onclick="speak('者，讀者')">🔊 朗讀</button></div></div>
+    <div class="v-card"><div class="v-char">新</div><div class="v-info"><div class="v-word">新書</div><div class="v-meta">部首：斤 | 筆畫：13</div><button class="btn-speak" onclick="speak('新，新書')">🔊 朗讀</button></div></div>
+    
+    <!-- 11-20 -->
+    <div class="v-card"><div class="v-char">書</div><div class="v-info"><div class="v-word">書店</div><div class="v-meta">部首：曰 | 筆畫：10</div><button class="btn-speak" onclick="speak('書，書店')">🔊 朗讀</button></div></div>
+    <div class="v-card"><div class="v-char">架</div><div class="v-info"><div class="v-word">上架</div><div class="v-meta">部首：木 | 筆畫：9</div><button class="btn-speak" onclick="speak('架，上架')">🔊 朗讀</button></div></div>
+    <div class="v-card"><div class="v-char">版</div><div class="v-info"><div class="v-word">出版</div><div class="v-meta">部首：片 | 筆畫：8</div><button class="btn-speak" onclick="speak('版，出版')">🔊 朗讀</button></div></div>
+    <div class="v-card"><div class="v-char">社</div><div class="v-info"><div class="v-word">社會</div><div class="v-meta">部首：示 | 筆畫：8</div><button class="btn-speak" onclick="speak('社，社會')">🔊 朗讀</button></div></div>
+    <div class="v-card"><div class="v-char">甚</div><div class="v-info"><div class="v-word">甚至</div><div class="v-meta">部首：甘 | 筆畫：9</div><button class="btn-speak" onclick="speak('甚，甚至')">🔊 朗讀</button></div></div>
+    <div class="v-card"><div class="v-char">推</div><div class="v-info"><div class="v-word">推出</div><div class="v-meta">部首：手 | 筆畫：11</div><button class="btn-speak" onclick="speak('推，推出')">🔊 朗讀</button></div></div>
+    <div class="v-card"><div class="v-char">優</div><div class="v-info"><div class="v-word">優惠</div><div class="v-meta">部首：人 | 筆畫：17</div><button class="btn-speak" onclick="speak('優，優惠')">🔊 朗讀</button></div></div>
+    <div class="v-card"><div class="v-char">惠</div><div class="v-info"><div class="v-word">恩惠</div><div class="v-meta">部首：心 | 筆畫：12</div><button class="btn-speak" onclick="speak('惠，恩惠')">🔊 朗讀</button></div></div>
+    <div class="v-card"><div class="v-char">活</div><div class="v-info"><div class="v-word">活動</div><div class="v-meta">部首：水 | 筆畫：9</div><button class="btn-speak" onclick="speak('活，活動')">🔊 朗讀</button></div></div>
+    <div class="v-card"><div class="v-char">動</div><div class="v-info"><div class="v-word">運動</div><div class="v-meta">部首：力 | 筆畫：11</div><button class="btn-speak" onclick="speak('動，運動')">🔊 朗讀</button></div></div>
+    
+    <!-- 21-30 -->
+    <div class="v-card"><div class="v-char">時</div><div class="v-info"><div class="v-word">時間</div><div class="v-meta">部首：日 | 筆畫：10</div><button class="btn-speak" onclick="speak('時，時間')">🔊 朗讀</button></div></div>
+    <div class="v-card"><div class="v-char">限</div><div class="v-info"><div class="v-word">時限</div><div class="v-meta">部首：阜 | 筆畫：9</div><button class="btn-speak" onclick="speak('限，時限')">🔊 朗讀</button></div></div>
+    <div class="v-card"><div class="v-char">購</div><div class="v-info"><div class="v-word">購書</div><div class="v-meta">部首：貝 | 筆畫：17</div><button class="btn-speak" onclick="speak('購，購書')">🔊 朗讀</button></div></div>
+    <div class="v-card"><div class="v-char">但</div><div class="v-info"><div class="v-word">不但</div><div class="v-meta">部首：人 | 筆畫：7</div><button class="btn-speak" onclick="speak('但，不但')">🔊 朗讀</button></div></div>
+    <div class="v-card"><div class="v-char">享</div><div class="v-info"><div class="v-word">享有</div><div class="v-meta">部首：亠 | 筆畫：8</div><button class="btn-speak" onclick="speak('享，享有')">🔊 朗讀</button></div></div>
+    <div class="v-card"><div class="v-char">折</div><div class="v-info"><div class="v-word">折扣</div><div class="v-meta">部首：手 | 筆畫：7</div><button class="btn-speak" onclick="speak('折，折扣')">🔊 朗讀</button></div></div>
+    <div class="v-card"><div class="v-char">扣</div><div class="v-info"><div class="v-word">扣錢</div><div class="v-meta">部首：手 | 筆畫：6</div><button class="btn-speak" onclick="speak('扣，扣錢')">🔊 朗讀</button></div></div>
+    <div class="v-card"><div class="v-char">贈</div><div class="v-info"><div class="v-word">贈送</div><div class="v-meta">部首：貝 | 筆畫：19</div><button class="btn-speak" onclick="speak('贈，贈送')">🔊 朗讀</button></div></div>
+    <div class="v-card"><div class="v-char">送</div><div class="v-info"><div class="v-word">歡送</div><div class="v-meta">部首：辵 | 筆畫：10</div><button class="btn-speak" onclick="speak('送，歡送')">🔊 朗讀</button></div></div>
+    <div class="v-card"><div class="v-char">量</div><div class="v-info"><div class="v-word">限量</div><div class="v-meta">部首：里 | 筆畫：12</div><button class="btn-speak" onclick="speak('量，限量')">🔊 朗讀</button></div></div>
+    
+    <!-- 31-40 -->
+    <div class="v-card"><div class="v-char">畫</div><div class="v-info"><div class="v-word">畫冊</div><div class="v-meta">部首：田 | 筆畫：12</div><button class="btn-speak" onclick="speak('畫，畫冊')">🔊 朗讀</button></div></div>
+    <div class="v-card"><div class="v-char">冊</div><div class="v-info"><div class="v-word">手冊</div><div class="v-meta">部首：冂 | 筆畫：5</div><button class="btn-speak" onclick="speak('冊，手冊')">🔊 朗讀</button></div></div>
+    <div class="v-card"><div class="v-char">原</div><div class="v-info"><div class="v-word">原先</div><div class="v-meta">部首：厂 | 筆畫：10</div><button class="btn-speak" onclick="speak('原，原先')">🔊 朗讀</button></div></div>
+    <div class="v-card"><div class="v-char">待</div><div class="v-info"><div class="v-word">期待</div><div class="v-meta">部首：彳 | 筆畫：9</div><button class="btn-speak" onclick="speak('待，期待')">🔊 朗讀</button></div></div>
+    <div class="v-card"><div class="v-char">哥</div><div class="v-info"><div class="v-word">哥哥</div><div class="v-meta">部首：口 | 筆畫：10</div><button class="btn-speak" onclick="speak('哥，哥哥')">🔊 朗讀</button></div></div>
+    <div class="v-card"><div class="v-char">打</div><div class="v-info"><div class="v-word">打算</div><div class="v-meta">部首：手 | 筆畫：5</div><button class="btn-speak" onclick="speak('打，打算')">🔊 朗讀</button></div></div>
+    <div class="v-card"><div class="v-char">算</div><div class="v-info"><div class="v-word">計算</div><div class="v-meta">部首：竹 | 筆畫：14</div><button class="btn-speak" onclick="speak('算，計算')">🔊 朗讀</button></div></div>
+    <div class="v-card"><div class="v-char">運</div><div class="v-info"><div class="v-word">運動</div><div class="v-meta">部首：辵 | 筆畫：13</div><button class="btn-speak" onclick="speak('運，運動')">🔊 朗讀</button></div></div>
+    <div class="v-card"><div class="v-char">鞋</div><div class="v-info"><div class="v-word">球鞋</div><div class="v-meta">部首：革 | 筆畫：15</div><button class="btn-speak" onclick="speak('鞋，球鞋')">🔊 朗讀</button></div></div>
+    <div class="v-card"><div class="v-char">無</div><div class="v-info"><div class="v-word">無法</div><div class="v-meta">部首：火 | 筆畫：12</div><button class="btn-speak" onclick="speak('無，無法')">🔊 朗讀</button></div></div>
+
+    <!-- 41-50 -->
+    <div class="v-card"><div class="v-char">法</div><div class="v-info"><div class="v-word">方法</div><div class="v-meta">部首：水 | 筆畫：8</div><button class="btn-speak" onclick="speak('法，方法')">🔊 朗讀</button></div></div>
+    <div class="v-card"><div class="v-char">失</div><div class="v-info"><div class="v-word">失望</div><div class="v-meta">部首：大 | 筆畫：5</div><button class="btn-speak" onclick="speak('失，失望')">🔊 朗讀</button></div></div>
+    <div class="v-card"><div class="v-char">望</div><div class="v-info"><div class="v-word">希望</div><div class="v-meta">部首：月 | 筆畫：11</div><button class="btn-speak" onclick="speak('望，希望')">🔊 朗讀</button></div></div>
+    <div class="v-card"><div class="v-char">錯</div><div class="v-info"><div class="v-word">錯過</div><div class="v-meta">部首：金 | 筆畫：16</div><button class="btn-speak" onclick="speak('錯，錯過')">🔊 朗讀</button></div></div>
+    <div class="v-card"><div class="v-char">過</div><div class="v-info"><div class="v-word">過去</div><div class="v-meta">部首：辵 | 筆畫：13</div><button class="btn-speak" onclick="speak('過，過去')">🔊 朗讀</button></div></div>
+    <div class="v-card"><div class="v-char">機</div><div class="v-info"><div class="v-word">機會</div><div class="v-meta">部首：木 | 筆畫：16</div><button class="btn-speak" onclick="speak('機，機會')">🔊 朗讀</button></div></div>
+    <div class="v-card"><div class="v-char">可</div><div class="v-info"><div class="v-word">可惜</div><div class="v-meta">部首：口 | 筆畫：5</div><button class="btn-speak" onclick="speak('可，可惜')">🔊 朗讀</button></div></div>
+    <div class="v-card"><div class="v-char">惜</div><div class="v-info"><div class="v-word">珍惜</div><div class="v-meta">部首：心 | 筆畫：11</div><button class="btn-speak" onclick="speak('惜，珍惜')">🔊 朗讀</button></div></div>
+    <div class="v-card"><div class="v-char">決</div><div class="v-info"><div class="v-word">決定</div><div class="v-meta">部首：水 | 筆畫：7</div><button class="btn-speak" onclick="speak('決，決定')">🔊 朗讀</button></div></div>
+    <div class="v-card"><div class="v-char">定</div><div class="v-info"><div class="v-word">一定</div><div class="v-meta">部首：宀 | 筆畫：8</div><button class="btn-speak" onclick="speak('定，一定')">🔊 朗讀</button></div></div>
+  </div>
+
+  <div class="section-title">🔢 數學練習：混合算術 (共20題)</div>
+  <div class="math-grid">
+    <div class="m-card"><div class="m-q">1. 維維想買一本原價350元的書，打八折後，又用了一張50元的折價券，她最後要付多少元？</div><div class="m-ans">算式：<span></span> = <span></span></div></div>
+    <div class="m-card"><div class="m-q">2. 哥哥每月存300元，存了兩個月後，買了一雙450元的運動鞋，他還剩下多少元？</div><div class="m-ans">算式：<span></span> = <span></span></div></div>
+    <div class="m-card"><div class="m-q">3. 媽媽給了兄妹兩人共1200元零用錢，平分給2個人，每人可以分到多少元？</div><div class="m-ans">算式：<span></span> = <span></span></div></div>
+    <div class="m-card"><div class="m-q">4. 維維每週存50元，一個月有4週，她一個月可以存多少元？</div><div class="m-ans">算式：<span></span> = <span></span></div></div>
+    <div class="m-card"><div class="m-q">5. 畫冊原本限量500本，第一天送出125本，第二天送出175本，還剩下幾本？</div><div class="m-ans">算式：<span></span> = <span></span></div></div>
+    <div class="m-card"><div class="m-q">6. 哥哥想存800元，現在已經存了600元，他還差多少元就能達到目標？</div><div class="m-ans">算式：<span></span> = <span></span></div></div>
+    <div class="m-card"><div class="m-q">7. 維維第一週存20元，第二週存50元，第三週沒有存，第四週存了30元，她這個月總共存了多少元？</div><div class="m-ans">算式：<span></span> = <span></span></div></div>
+    <div class="m-card"><div class="m-q">8. 一套新書共有4本，每本售價210元，買整套可以折抵50元，買整套要多少元？</div><div class="m-ans">算式：<span></span> = <span></span></div></div>
+    <div class="m-card"><div class="m-q">9. 撲滿裡有250元，其中有100元是鈔票，剩下的都是50元硬幣，請問有幾個50元硬幣？</div><div class="m-ans">算式：<span></span> = <span></span></div></div>
+    <div class="m-card"><div class="m-q">10. 哥哥把600元平分成3份，其中1份拿去買文具，買文具花了多少元？</div><div class="m-ans">算式：<span></span> = <span></span></div></div>
+    <div class="m-card"><div class="m-q">11. 軟體紀錄上，維維第一個月存了120元，第二個月存了130元，她距離500元的目標還差多少？</div><div class="m-ans">算式：<span></span> = <span></span></div></div>
+    <div class="m-card"><div class="m-q">12. 運動鞋原價890元，現在特價只要650元，便宜了多少元？</div><div class="m-ans">算式：<span></span> = <span></span></div></div>
+    <div class="m-card"><div class="m-q">13. 媽媽把1500元平分給3個孩子，每人拿到多少元？</div><div class="m-ans">算式：<span></span> = <span></span></div></div>
+    <div class="m-card"><div class="m-q">14. 維維的平板電腦原本有64GB的空間，下載記帳軟體用掉了2GB，又下載遊戲用掉了15GB，還剩下多少GB？</div><div class="m-ans">算式：<span></span> = <span></span></div></div>
+    <div class="m-card"><div class="m-q">15. 報紙廣告上有5本書，每本厚度是3公分，把它們疊在一起，總共厚幾公分？</div><div class="m-ans">算式：<span></span> = <span></span></div></div>
+    <div class="m-card"><div class="m-q">16. 哥哥每天節省開銷存下15元，30天後他可以存多少元？</div><div class="m-ans">算式：<span></span> = <span></span></div></div>
+    <div class="m-card"><div class="m-q">17. 一張折價券可以折抵20元，維維有3張，她買一本280元的書，最後要付多少元？</div><div class="m-ans">算式：<span></span> = <span></span></div></div>
+    <div class="m-card"><div class="m-q">18. 撲滿本來是空的，維維第一天放進去50元，第二天拿出來20元，第三天又放進去100元，現在裡面有多少元？</div><div class="m-ans">算式：<span></span> = <span></span></div></div>
+    <div class="m-card"><div class="m-q">19. 新書發表會的場地有20排座位，每排有15個位子，總共可以坐多少人？</div><div class="m-ans">算式：<span></span> = <span></span></div></div>
+    <div class="m-card"><div class="m-q">20. 維維存了250元，哥哥存了600元，兩人合起來的錢，夠不夠買一套900元的套書？相差多少元？</div><div class="m-ans">算式：<span></span> = <span></span></div></div>
+  </div>
+</div>
+
+</body>
+</html>
