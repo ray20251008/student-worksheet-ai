@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<title>四年級學習單：存錢大作戰</title>
+<script src="https://cdn.jsdelivr.net/npm/hanzi-writer@3.5/dist/hanzi-writer.min.js"></script>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@400;700;900&family=Noto+Sans+TC:wght@300;400;500;700&display=swap');
+  body { font-family: 'Noto Sans TC', sans-serif; background: #f0f4f0; color: #1a1a2e; margin: 0; padding: 20px; }
+  .sheet { max-width: 900px; margin: 0 auto; background: white; padding: 40px; border-radius: 10px; box-shadow: 0 4px 10px rgba(0,0,0,0.1); }
+  h1 { text-align: center; color: #2D6A4F; font-family: 'Noto Serif TC', serif; }
+  .article { background: #E9F5EE; padding: 20px; border-left: 5px solid #2D6A4F; line-height: 1.8; font-size: 1.1rem; margin-bottom: 30px; }
+  .section-title { color: #2D6A4F; border-bottom: 2px solid #c8e6c9; padding-bottom: 5px; margin-top: 30px; font-weight: bold; font-size: 1.2rem; }
+  
+  /* Reading */
+  .q-list { list-style: none; padding: 0; }
+  .q-list li { margin-bottom: 15px; line-height: 1.6; }
+  .q-list li input { width: 100%; border: none; border-bottom: 1px solid #aaa; margin-top: 10px; outline: none; }
+
+  /* Vocab Vertical Layout */
+  .vocab-container { display: flex; flex-direction: row-reverse; flex-wrap: wrap; justify-content: flex-start; margin-top: 20px; gap: 10px; }
+  
+  .v-col {
+    width: 65px;
+    border: 1px solid #555;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background: #fff;
+    box-sizing: border-box;
+  }
+  .v-box { width: 100%; border-bottom: 1px solid #555; display: flex; justify-content: center; align-items: center; box-sizing: border-box; }
+  .v-box:last-child { border-bottom: none; }
+  
+  .box-title { height: 25px; font-size: 12px; writing-mode: vertical-rl; padding: 5px 0; color: #2D6A4F; font-weight: bold; letter-spacing: 2px; }
+  .box-empty { height: 50px; } /* 訂正區 */
+  
+  .box-char { height: 90px; font-family: 'Noto Serif TC', serif; font-size: 40px; display: flex; flex-direction: row-reverse; justify-content: center; align-items: center; padding: 5px; }
+  .ruby-text { display: flex; flex-direction: row-reverse; align-items: center; }
+  .zhuyin { font-size: 14px; writing-mode: vertical-rl; margin-right: 5px; font-family: sans-serif; letter-spacing: 2px; }
+  
+  .box-meta { height: 80px; font-size: 12px; writing-mode: vertical-rl; text-align: center; padding: 5px; line-height: 1.2; }
+  
+  .box-word { height: 100px; display: flex; flex-direction: column; justify-content: space-between; align-items: center; padding: 5px 0; }
+  .word-label { font-size: 12px; color: #666; }
+  .word-line { width: 2px; height: 70px; border-left: 1px dashed #999; }
+  
+  /* Tianzige */
+  .tianzi { width: 55px; height: 55px; border: 1px solid #2D6A4F; position: relative; margin-bottom: -1px; }
+  .tianzi::before, .tianzi::after { content: ''; position: absolute; border: 1px dashed #c8e6c9; }
+  .tianzi::before { top: 50%; left: 0; right: 0; transform: translateY(-50%); }
+  .tianzi::after { left: 50%; top: 0; bottom: 0; transform: translateX(-50%); }
+  .hw-target { position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 10; }
+
+  /* Math */
+  .math-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-top: 15px; }
+  .m-card { border: 1px solid #ddd; padding: 15px; border-radius: 8px; background: #fafafa; page-break-inside: avoid; }
+  .m-q { margin-bottom: 10px; line-height: 1.5; font-size: 0.95rem; }
+  .m-ans { color: #888; font-size: 0.9rem; }
+  .m-ans span { display: inline-block; width: 80px; border-bottom: 1px solid #666; }
+
+  .print-btn { display: block; margin: 20px auto; background: #2D6A4F; color: white; padding: 10px 30px; text-align: center; text-decoration: none; border-radius: 20px; width: 150px; cursor: pointer; border: none; font-size: 1.1rem; }
+  .answer-key { margin-top: 40px; padding: 20px; background: #fdf5e6; border: 1px dashed #d4a373; border-radius: 8px; page-break-inside: avoid; }
+  .answer-key h2 { color: #d4a373; margin-top: 0; }
+  
+  @media print { 
+    .print-btn { display: none; } 
+    body { background: white; margin: 0; padding: 0; } 
+    .sheet { box-shadow: none; margin: 0; padding: 0; max-width: 100%; } 
+    .answer-key { display: none; } 
+    .vocab-container { gap: 2px; }
+    .v-col { page-break-inside: avoid; }
+  }
+</style>
+</head>
+<body>
+
+<button class="print-btn" onclick="window.print()">🖨️ 列印學習單</button>
+
+<div class="sheet">
+  <h1>每週學習單：存錢大作戰</h1>
+  
+  <div class="article">
+    近，維維看到報紙廣告，發現她最愛的作者新書上架，出版社甚至推出優惠活動：時限內購書不但享有折扣，還贈送限量畫冊。<br><br>
+    維維原先期待哥哥會因為打折，提出兩人合買套書，沒想到哥哥近期已打算買運動鞋，所以無法出錢。<br><br>
+    維維很失望，又覺得錯過機會可惜，所以決定靠自己存錢買書。她想起之前社會課，老師曾教大家使用「記帳及存款」軟體管理零用錢，於是維維用家裡的平板下載並註冊，開始儲蓄。<br><br>
+    每個月五號，媽媽分別給維維和哥哥當月的零用錢。維維決定將總額按週次平分，再每週檢查零用錢餘額，把剩餘的錢存進撲滿，並以軟體記錄；哥哥則是先設定每月存錢目標，再精打細算，節省開銷。<br><br>
+    幾週後，維維發現她每次存款的金額不固定，有時存二十元，有時五十元，有時甚至一毛錢也沒存。<br><br>
+    兩個月後，維維和哥哥談起存錢心得，驚訝的發現這段時間哥哥已存下六百元，維維只有兩百五十元，讓她氣餒又難過，不曉得為什麼自己存了錢，卻還是離目標很遙遠。
+  </div>
+
+  <div class="section-title">❓ 閱讀測驗</div>
+  <ul class="q-list">
+    <li>1. 維維為什麼決定開始自己存錢？<br><input type="text"></li>
+    <li>2. 哥哥存錢的方法跟維維有什麼不同？<br><input type="text"></li>
+    <li>3. 為什麼兩個月後，哥哥存的錢比維維還要多？<br><input type="text"></li>
+  </ul>
+
+  <div class="section-title">✏️ 生字簿甲乙本練習 (共50字)</div>
+  <div class="vocab-container" id="vocab-container">
+    <!-- Columns will be generated by JS -->
+  </div>
+
+  <div class="section-title">🔢 數學練習：混合算術 (共20題)</div>
+  <div class="math-grid">
+    <div class="m-card"><div class="m-q">1. 維維想買一本原價350元的書，打八折後，又用了一張50元的折價券，她最後要付多少元？</div><div class="m-ans">算式：<span></span> = <span></span></div></div>
+    <div class="m-card"><div class="m-q">2. 哥哥每月存300元，存了兩個月後，買了一雙450元的運動鞋，他還剩下多少元？</div><div class="m-ans">算式：<span></span> = <span></span></div></div>
+    <div class="m-card"><div class="m-q">3. 媽媽給了兄妹兩人共1200元零用錢，平分給2個人，每人可以分到多少元？</div><div class="m-ans">算式：<span></span> = <span></span></div></div>
+    <div class="m-card"><div class="m-q">4. 維維每週存50元，一個月有4週，她一個月可以存多少元？</div><div class="m-ans">算式：<span></span> = <span></span></div></div>
+    <div class="m-card"><div class="m-q">5. 畫冊原本限量500本，第一天送出125本，第二天送出175本，還剩下幾本？</div><div class="m-ans">算式：<span></span> = <span></span></div></div>
+    <div class="m-card"><div class="m-q">6. 哥哥想存800元，現在已經存了600元，他還差多少元就能達到目標？</div><div class="m-ans">算式：<span></span> = <span></span></div></div>
+    <div class="m-card"><div class="m-q">7. 維維第一週存20元，第二週存50元，第三週沒有存，第四週存了30元，她這個月總共存了多少元？</div><div class="m-ans">算式：<span></span> = <span></span></div></div>
+    <div class="m-card"><div class="m-q">8. 一套新書共有4本，每本售價210元，買整套可以折抵50元，買整套要多少元？</div><div class="m-ans">算式：<span></span> = <span></span></div></div>
+    <div class="m-card"><div class="m-q">9. 撲滿裡有250元，其中有100元是鈔票，剩下的都是50元硬幣，請問有幾個50元硬幣？</div><div class="m-ans">算式：<span></span> = <span></span></div></div>
+    <div class="m-card"><div class="m-q">10. 哥哥把600元平分成3份，其中1份拿去買文具，買文具花了多少元？</div><div class="m-ans">算式：<span></span> = <span></span></div></div>
+    <div class="m-card"><div class="m-q">11. 軟體紀錄上，維維第一個月存了120元，第二個月存了130元，她距離500元的目標還差多少？</div><div class="m-ans">算式：<span></span> = <span></span></div></div>
+    <div class="m-card"><div class="m-q">12. 運動鞋原價890元，現在特價只要650元，便宜了多少元？</div><div class="m-ans">算式：<span></span> = <span></span></div></div>
+    <div class="m-card"><div class="m-q">13. 媽媽把1500元平分給3個孩子，每人拿到多少元？</div><div class="m-ans">算式：<span></span> = <span></span></div></div>
+    <div class="m-card"><div class="m-q">14. 維維的平板電腦原本有64GB的空間，下載記帳軟體用掉了2GB，又下載遊戲用掉了15GB，還剩下多少GB？</div><div class="m-ans">算式：<span></span> = <span></span></div></div>
+    <div class="m-card"><div class="m-q">15. 報紙廣告上有5本書，每本厚度是3公分，把它們疊在一起，總共厚幾公分？</div><div class="m-ans">算式：<span></span> = <span></span></div></div>
+    <div class="m-card"><div class="m-q">16. 哥哥每天節省開銷存下15元，30天後他可以存多少元？</div><div class="m-ans">算式：<span></span> = <span></span></div></div>
+    <div class="m-card"><div class="m-q">17. 一張折價券可以折抵20元，維維有3張，她買一本280元的書，最後要付多少元？</div><div class="m-ans">算式：<span></span> = <span></span></div></div>
+    <div class="m-card"><div class="m-q">18. 撲滿本來是空的，維維第一天放進去50元，第二天拿出來20元，第三天又放進去100元，現在裡面有多少元？</div><div class="m-ans">算式：<span></span> = <span></span></div></div>
+    <div class="m-card"><div class="m-q">19. 新書發表會的場地有20排座位，每排有15個位子，總共可以坐多少人？</div><div class="m-ans">算式：<span></span> = <span></span></div></div>
+    <div class="m-card"><div class="m-q">20. 維維存了250元，哥哥存了600元，兩人合起來的錢，夠不夠買一套900元的套書？相差多少元？</div><div class="m-ans">算式：<span></span> = <span></span></div></div>
+  </div>
+
+  <div class="answer-key">
+    <h2>🔑 數學解答區 (列印時會自動隱藏)</h2>
+    <ol>
+      <li>350 × 0.8 = 280, 280 - 50 = 230</li>
+      <li>300 × 2 = 600, 600 - 450 = 150</li>
+      <li>1200 ÷ 2 = 600</li>
+      <li>50 × 4 = 200</li>
+      <li>500 - 125 - 175 = 200</li>
+      <li>800 - 600 = 200</li>
+      <li>20 + 50 + 0 + 30 = 100</li>
+      <li>210 × 4 = 840, 840 - 50 = 790</li>
+      <li>250 - 100 = 150, 150 ÷ 50 = 3</li>
+      <li>600 ÷ 3 = 200</li>
+      <li>120 + 130 = 250, 500 - 250 = 250</li>
+      <li>890 - 650 = 240</li>
+      <li>1500 ÷ 3 = 500</li>
+      <li>64 - 2 - 15 = 47</li>
+      <li>5 × 3 = 15</li>
+      <li>15 × 30 = 450</li>
+      <li>280 - (20 × 3) = 220</li>
+      <li>50 - 20 + 100 = 130</li>
+      <li>20 × 15 = 300</li>
+      <li>250 + 600 = 850, 900 - 850 = 50 (不夠，相差50元)</li>
+    </ol>
+  </div>
+</div>
+
+<script>
+  const charsData = [{"c": "近", "z": "ㄐㄧㄣˋ", "r": "辵", "s": "8"}, {"c": "報", "z": "ㄅㄠˋ", "r": "土", "s": "12"}, {"c": "紙", "z": "ㄓˇ", "r": "糸", "s": "10"}, {"c": "廣", "z": "ㄍㄨㄤˇ", "r": "广", "s": "15"}, {"c": "告", "z": "ㄍㄠˋ", "r": "口", "s": "7"}, {"c": "覺", "z": "ㄐㄩㄝˊ", "r": "見", "s": "20"}, {"c": "最", "z": "ㄗㄨㄟˋ", "r": "曰", "s": "12"}, {"c": "愛", "z": "ㄞˋ", "r": "心", "s": "13"}, {"c": "作", "z": "ㄗㄨㄛˋ", "r": "人", "s": "7"}, {"c": "者", "z": "ㄓㄜˇ", "r": "老", "s": "9"}, {"c": "新", "z": "ㄒㄧㄣ", "r": "斤", "s": "13"}, {"c": "書", "z": "ㄕㄨ", "r": "曰", "s": "10"}, {"c": "架", "z": "ㄐㄧㄚˋ", "r": "木", "s": "9"}, {"c": "版", "z": "ㄅㄢˇ", "r": "片", "s": "8"}, {"c": "社", "z": "ㄕㄜˋ", "r": "示", "s": "8"}, {"c": "甚", "z": "ㄕㄣˋ", "r": "甘", "s": "9"}, {"c": "推", "z": "ㄊㄨㄟ", "r": "手", "s": "11"}, {"c": "優", "z": "ㄧㄡ", "r": "人", "s": "17"}, {"c": "惠", "z": "ㄏㄨㄟˋ", "r": "心", "s": "12"}, {"c": "活", "z": "ㄏㄨㄛˊ", "r": "水", "s": "9"}, {"c": "動", "z": "ㄉㄨㄥˋ", "r": "力", "s": "11"}, {"c": "限", "z": "ㄒㄧㄢˋ", "r": "阜", "s": "9"}, {"c": "購", "z": "ㄍㄡˋ", "r": "貝", "s": "17"}, {"c": "但", "z": "ㄉㄢˋ", "r": "人", "s": "7"}, {"c": "享", "z": "ㄒㄧㄤˇ", "r": "亠", "s": "8"}, {"c": "折", "z": "ㄓㄜˊ", "r": "手", "s": "7"}, {"c": "扣", "z": "ㄎㄡˋ", "r": "手", "s": "6"}, {"c": "贈", "z": "ㄗㄥˋ", "r": "貝", "s": "19"}, {"c": "送", "z": "ㄙㄨㄥˋ", "r": "辵", "s": "10"}, {"c": "量", "z": "ㄌㄧㄤˋ", "r": "里", "s": "12"}, {"c": "畫", "z": "ㄏㄨㄚˋ", "r": "田", "s": "12"}, {"c": "冊", "z": "ㄘㄜˋ", "r": "冂", "s": "5"}, {"c": "原", "z": "ㄩㄢˊ", "r": "厂", "s": "10"}, {"c": "待", "z": "ㄉㄞˋ", "r": "彳", "s": "9"}, {"c": "哥", "z": "ㄍㄜ", "r": "口", "s": "10"}, {"c": "打", "z": "ㄉㄚˇ", "r": "手", "s": "5"}, {"c": "算", "z": "ㄙㄨㄢˋ", "r": "竹", "s": "14"}, {"c": "運", "z": "ㄩㄣˋ", "r": "辵", "s": "13"}, {"c": "鞋", "z": "ㄒㄧㄝˊ", "r": "革", "s": "15"}, {"c": "無", "z": "ㄨˊ", "r": "火", "s": "12"}, {"c": "法", "z": "ㄈㄚˇ", "r": "水", "s": "8"}, {"c": "失", "z": "ㄕ", "r": "大", "s": "5"}, {"c": "望", "z": "ㄨㄤˋ", "r": "月", "s": "11"}, {"c": "錯", "z": "ㄘㄨㄛˋ", "r": "金", "s": "16"}, {"c": "過", "z": "ㄍㄨㄛˋ", "r": "辵", "s": "13"}, {"c": "機", "z": "ㄐㄧ", "r": "木", "s": "16"}, {"c": "可", "z": "ㄎㄜˇ", "r": "口", "s": "5"}, {"c": "惜", "z": "ㄒㄧˊ", "r": "心", "s": "11"}, {"c": "決", "z": "ㄐㄩㄝˊ", "r": "水", "s": "7"}, {"c": "定", "z": "ㄉㄧㄥˋ", "r": "宀", "s": "8"}];
+  const container = document.getElementById('vocab-container');
+
+  charsData.forEach((d, i) => {
+    // Create column
+    const col = document.createElement('div');
+    col.className = 'v-col';
+
+    // 訂正區
+    col.innerHTML += `<div class="v-box box-empty"><div class="box-title">訂正</div></div>`;
+    
+    // 生字與注音
+    col.innerHTML += `<div class="v-box box-char">
+      <div class="ruby-text">
+        <span>${d.c}</span>
+        <div class="zhuyin">${d.z}</div>
+      </div>
+    </div>`;
+
+    // 部首筆畫
+    col.innerHTML += `<div class="v-box box-meta">部首：${d.r}<br>筆畫：${d.s}</div>`;
+
+    // 造詞空白區
+    col.innerHTML += `<div class="v-box box-word">
+      <div class="word-label">造詞</div>
+      <div class="word-line"></div>
+    </div>`;
+
+    // 田字格 (1 個描寫 + 3 個空白)
+    for(let j=0; j<4; j++) {
+      const tianzi = document.createElement('div');
+      tianzi.className = 'v-box tianzi';
+      
+      if (j === 0) {
+        // 第一個格子放 Hanzi Writer 描寫字
+        const hwTarget = document.createElement('div');
+        hwTarget.className = 'hw-target';
+        hwTarget.id = `hw-${i}`;
+        tianzi.appendChild(hwTarget);
+        col.appendChild(tianzi);
+        
+        // 初始化 Hanzi Writer
+        setTimeout(() => {
+          HanziWriter.create(`hw-${i}`, d.c, {
+            width: 55,
+            height: 55,
+            padding: 5,
+            strokeColor: '#ffb3b3', // 粉紅色示範字
+            showOutline: false
+          });
+        }, 100);
+      } else {
+        col.appendChild(tianzi);
+      }
+    }
+
+    container.appendChild(col);
+  });
+</script>
+</body>
+</html>
