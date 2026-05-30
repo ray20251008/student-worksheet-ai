@@ -721,14 +721,13 @@ function getMathPrompt(level, grade) {
 }
 
 async function callGemini(apiKey, systemPrompt, userPrompt) {
-  const modelsToTry = ['gemini-1.5-flash', 'gemini-1.5-pro', 'gemini-1.5-flash-latest', 'gemini-pro'];
+  const modelsToTry = ['gemini-2.5-flash'];
   let lastError = null;
 
   for (const model of modelsToTry) {
     const url = `https://generativelanguage.googleapis.com/v1beta/models/${model}:generateContent?key=${apiKey}`;
     const payload = { contents: [{ parts: [{ text: systemPrompt + '\n\n' + userPrompt }] }] };
-    if (model.includes('1.5')) payload.generationConfig = { responseMimeType: "application/json" };
-
+    payload.generationConfig = { responseMimeType: "application/json" };
     try {
       const res = await fetch(url, {
         method: 'POST',
