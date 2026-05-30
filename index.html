@@ -3,6 +3,9 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+<meta http-equiv="Pragma" content="no-cache">
+<meta http-equiv="Expires" content="0">
 <title>每週學習單產生器</title>
 <style>
   @import url('https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@400;700;900&family=Noto+Sans+TC:wght@300;400;500;700&display=swap');
@@ -540,18 +543,26 @@
 
   <!-- Input Card -->
   <div class="card">
-    <div style="margin-bottom: 24px; padding: 12px; background: #fff5eb; border-radius: 8px; border: 1px solid #ffe0c2;">
+    <div id="api-key-section" style="margin-bottom: 24px; padding: 12px; background: #fff5eb; border-radius: 8px; border: 1px solid #ffe0c2; display: none;">
       <label class="ctrl-label" style="display:flex; align-items:center; gap:8px; margin-bottom: 0;">
         🔑 Gemini API Key:
         <input type="password" id="api-key" placeholder="貼上你的 API Key" style="flex:1; padding:8px; border:1px solid #ccc; border-radius:6px; font-family: sans-serif;">
       </label>
       <div style="font-size: 0.8rem; color: #888; margin-top: 4px; padding-left: 140px;">*你的金鑰僅會保存在你的瀏覽器中。由於網頁不支援原本的 Claude API，我幫你接回你之前設定好的 Gemini API！</div>
     </div>
+    
+    <h2 style="display: flex; justify-content: space-between; align-items: center;">
+      <span><span class="icon">📋</span> 貼入本週文章</span>
+      <button onclick="document.getElementById('api-key-section').style.display='block'" style="background:none; border:none; color:var(--muted); font-size:0.8rem; cursor:pointer; text-decoration:underline;">⚙️ 修改 API Key</button>
+    </h2>
     <script>
       const savedKey = localStorage.getItem('gemini_api_key');
-      if (savedKey) document.getElementById('api-key').value = savedKey;
+      if (savedKey) {
+        document.getElementById('api-key').value = savedKey;
+      } else {
+        document.getElementById('api-key-section').style.display = 'block';
+      }
     </script>
-    <h2><span class="icon">📋</span> 貼入本週文章</h2>
     <textarea id="article-input" placeholder="請將國語日報文章內容貼在這裡…&#10;&#10;例：&#10;小明和媽媽去市場買菜。他們買了紅蘿蔔、白菜和豆腐。&#10;媽媽說要做一鍋暖暖的湯給全家人喝。小明很期待晚餐。"></textarea>
 
     <div class="controls">
