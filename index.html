@@ -540,6 +540,17 @@
 
   <!-- Input Card -->
   <div class="card">
+    <div style="margin-bottom: 24px; padding: 12px; background: #fff5eb; border-radius: 8px; border: 1px solid #ffe0c2;">
+      <label class="ctrl-label" style="display:flex; align-items:center; gap:8px; margin-bottom: 0;">
+        🔑 Gemini API Key:
+        <input type="password" id="api-key" placeholder="貼上你的 API Key" style="flex:1; padding:8px; border:1px solid #ccc; border-radius:6px; font-family: sans-serif;">
+      </label>
+      <div style="font-size: 0.8rem; color: #888; margin-top: 4px; padding-left: 140px;">*你的金鑰僅會保存在你的瀏覽器中。由於網頁不支援原本的 Claude API，我幫你接回你之前設定好的 Gemini API！</div>
+    </div>
+    <script>
+      const savedKey = localStorage.getItem('gemini_api_key');
+      if (savedKey) document.getElementById('api-key').value = savedKey;
+    </script>
     <h2><span class="icon">📋</span> 貼入本週文章</h2>
     <textarea id="article-input" placeholder="請將國語日報文章內容貼在這裡…&#10;&#10;例：&#10;小明和媽媽去市場買菜。他們買了紅蘿蔔、白菜和豆腐。&#10;媽媽說要做一鍋暖暖的湯給全家人喝。小明很期待晚餐。"></textarea>
 
@@ -698,20 +709,20 @@ function getMathPrompt(level, grade) {
   return prompts[level];
 }
 
-async function callClaude(systemPrompt, userPrompt) {
-  const res = await fetch('https://api.anthropic.com/v1/messages', {
+async function callGemini(apiKey, systemPrompt, userPrompt) {
+  const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${apiKey}`;
+  const res = await fetch(url, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({
-      model: 'claude-sonnet-4-20250514',
-      max_tokens: 2000,
-      system: systemPrompt,
-      messages: [{ role: 'user', content: userPrompt }]
+      contents: [{ parts: [{ text: systemPrompt + '\n\n' + userPrompt }] }],
+      generationConfig: { responseMimeType: "application/json" }
     })
   });
   const data = await res.json();
   if (data.error) throw new Error(data.error.message);
-  return data.content.map(b => b.text || '').join('');
+  if (!data.candidates || data.candidates.length === 0) throw new Error("無效的回覆");
+  return data.candidates[0].content.parts[0].text;
 }
 
 function setLoading(on) {
@@ -726,6 +737,10 @@ function showError(msg) {
 }
 
 async function generate() {
+  const apiKey = document.getElementById('api-key').value.trim();
+  if (!apiKey) { showError('請先輸入 Gemini API Key！'); return; }
+  localStorage.setItem('gemini_api_key', apiKey);
+
   const article = document.getElementById('article-input').value.trim();
   if (!article) { showError('請先貼入文章內容！'); return; }
   document.getElementById('error-box').innerHTML = '';
@@ -738,7 +753,7 @@ async function generate() {
     const SYS = '你是一位台灣國小語文老師助理，只輸出 JSON，不加任何說明或 Markdown 符號。';
 
     // ── 1. Questions + Vocab ──
-    const qvRaw = await callClaude(SYS, `
+    const qvRaw = await callGemini(apiKey, SYS, `
 以下是一篇適合國小${grade}年級學生的文章：
 
 【文章】
@@ -760,7 +775,7 @@ ${article}
 
     // ── 2. Math ──
     const mathPrompt = getMathPrompt(mathLevel, grade);
-    const mathRaw = await callClaude(SYS, mathPrompt + `
+    const mathRaw = await callGemini(apiKey, SYS, mathPrompt + `
 
 請輸出20題，只輸出純 JSON，不加任何說明，格式為：
 {"math":[...10個題目物件...]}
