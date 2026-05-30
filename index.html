@@ -710,19 +710,34 @@ function getMathPrompt(level, grade) {
 }
 
 async function callGemini(apiKey, systemPrompt, userPrompt) {
-  const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash-latest:generateContent?key=${apiKey}`;
-  const res = await fetch(url, {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({
-      contents: [{ parts: [{ text: systemPrompt + '\n\n' + userPrompt }] }],
-      generationConfig: { responseMimeType: "application/json" }
-    })
-  });
-  const data = await res.json();
-  if (data.error) throw new Error(data.error.message);
-  if (!data.candidates || data.candidates.length === 0) throw new Error("無效的回覆");
-  return data.candidates[0].content.parts[0].text;
+  const modelsToTry = ['gemini-1.5-flash', 'gemini-1.5-pro', 'gemini-1.5-flash-latest', 'gemini-pro'];
+  let lastError = null;
+
+  for (const model of modelsToTry) {
+    const url = `https://generativelanguage.googleapis.com/v1beta/models/${model}:generateContent?key=${apiKey}`;
+    const payload = { contents: [{ parts: [{ text: systemPrompt + '\n\n' + userPrompt }] }] };
+    if (model.includes('1.5')) payload.generationConfig = { responseMimeType: "application/json" };
+
+    try {
+      const res = await fetch(url, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload)
+      });
+      const data = await res.json();
+      if (!res.ok) throw new Error(data.error?.message || 'API Error');
+      if (!data.candidates || data.candidates.length === 0) throw new Error("無效的回覆");
+      return data.candidates[0].content.parts[0].text;
+    } catch (err) {
+      lastError = err;
+      if (err.message.includes('not found') || err.message.includes('not supported')) {
+        continue;
+      } else {
+        throw err;
+      }
+    }
+  }
+  throw lastError;
 }
 
 function setLoading(on) {
