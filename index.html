@@ -1,46 +1,73 @@
 <!DOCTYPE html>
 <html lang="zh-TW">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>我的國語學習單題庫</title>
-<style>
-  @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;700&display=swap');
-  body { font-family: 'Noto Sans TC', sans-serif; background-color: #f4f7f6; color: #333; margin: 0; padding: 40px 20px; text-align: center; }
-  .container { max-width: 600px; margin: 0 auto; background: #fff; padding: 40px 30px; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); }
-  h1 { color: #2D6A4F; margin-bottom: 10px; font-weight: 700; }
-  p.subtitle { color: #666; margin-bottom: 30px; }
-  .worksheet-list { list-style: none; padding: 0; margin: 0; }
-  .worksheet-list li { margin-bottom: 15px; }
-  .worksheet-list a { 
-    display: flex; 
-    align-items: center;
-    padding: 15px 20px; 
-    background: #E9F5EE; 
-    color: #2D6A4F; 
-    text-decoration: none; 
-    border-radius: 8px; 
-    font-size: 1.1rem;
-    font-weight: bold;
-    transition: all 0.3s ease;
-    border-left: 5px solid #2D6A4F;
-    text-align: left;
-  }
-  .worksheet-list a:hover { background: #d0ebd9; transform: translateX(5px); }
-  .icon { margin-right: 15px; font-size: 1.3rem; }
-</style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>我的國語學習單題庫與產生器</title>
+  <link rel="stylesheet" href="style.css">
+  <!-- Hanzi Writer for stroke order animations -->
+  <script src="https://cdn.jsdelivr.net/npm/hanzi-writer@3.5/dist/hanzi-writer.min.js"></script>
+  <!-- Marked for markdown parsing if needed -->
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
 </head>
 <body>
 
-<div class="container">
-  <h1>📚 我的國語學習單題庫</h1>
-  <p class="subtitle">點擊下方連結，即可開啟或列印專屬學習單</p>
-  
-  <ul class="worksheet-list">
-    <li><a href="homework_01/homework_01.html"><span class="icon">📝</span> 第 1 週：週末大挑戰：閱讀、生字與算術</a></li>
-    <!-- 未來新增的作業會接在這裡 -->
-  </ul>
-</div>
+  <header class="no-print">
+    <h1>📚 國語與數學學習單產生器 (AI 動態版)</h1>
+  </header>
 
+  <!-- APP 介面區塊 -->
+  <div class="app-container no-print">
+    <div class="form-group">
+      <label for="apiKey">設定 Google Gemini API Key</label>
+      <input type="password" id="apiKey" placeholder="請輸入你的 Gemini API Key (僅儲存於本地瀏覽器)">
+    </div>
+
+    <div class="form-group">
+      <label for="articleText">請貼上要產生題材的文章</label>
+      <textarea id="articleText" placeholder="例如：維維看到報紙廣告，發現她最愛的作者新書上架..."></textarea>
+    </div>
+
+    <button id="generateBtn" class="btn-generate">
+      <span class="loader" id="loader"></span>
+      ✨ 生成學習單 ✨
+    </button>
+    <p id="statusMsg" style="color: #b74b4b; margin-top: 10px; font-weight: bold; text-align: center;"></p>
+
+    <!-- 舊有學習單連結 -->
+    <div class="old-links">
+      <p>📝 過往的學習單：</p>
+      <a href="homework_01/homework_01.html">第 1 週：週末大挑戰：閱讀、生字與算術</a>
+    </div>
+  </div>
+
+  <!-- 產生的學習單區塊 -->
+  <div class="worksheet-container" id="worksheetContainer">
+    <div class="print-btn-container no-print">
+      <button class="print-btn" onclick="window.print()">🖨️ 列印學習單</button>
+    </div>
+
+    <div class="sheet" id="sheetContent">
+      <h1 id="wsTitle">每週學習單</h1>
+      
+      <div class="article" id="wsArticle"></div>
+
+      <div class="section-title">❓ 閱讀測驗</div>
+      <ul class="q-list" id="wsReading"></ul>
+
+      <div class="section-title">✏️ 生字簿甲乙本練習</div>
+      <div class="vocab-container" id="vocab-container"></div>
+
+      <div class="section-title">🔢 數學練習：混合算術</div>
+      <div class="math-grid" id="wsMath"></div>
+
+      <div class="answer-key" id="wsAnswerKey">
+        <h2>🔑 解答區 (列印時自動隱藏)</h2>
+        <div id="wsAnswers"></div>
+      </div>
+    </div>
+  </div>
+
+  <script src="generator.js"></script>
 </body>
 </html>

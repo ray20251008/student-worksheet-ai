@@ -1,0 +1,250 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@400;700;900&family=Noto+Sans+TC:wght@300;400;500;700&display=swap');
+
+:root {
+  --primary: #2D6A4F;
+  --primary-light: #E9F5EE;
+  --secondary: #40916C;
+  --bg-color: #f4f7f6;
+  --text-color: #1a1a2e;
+}
+
+body {
+  font-family: 'Noto Sans TC', sans-serif;
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  margin: 0;
+  padding: 0;
+}
+
+/* 頂部導覽列與工具列 */
+header {
+  background: white;
+  padding: 20px;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+  text-align: center;
+}
+
+header h1 {
+  margin: 0;
+  color: var(--primary);
+  font-family: 'Noto Serif TC', serif;
+}
+
+/* 產生器設定區塊 */
+.app-container {
+  max-width: 900px;
+  margin: 30px auto;
+  background: white;
+  padding: 30px;
+  border-radius: 12px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+}
+
+.form-group {
+  margin-bottom: 20px;
+  text-align: left;
+}
+
+.form-group label {
+  display: block;
+  font-weight: bold;
+  margin-bottom: 8px;
+  color: var(--primary);
+}
+
+.form-group input[type="password"],
+.form-group textarea {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-family: 'Noto Sans TC', sans-serif;
+  font-size: 1rem;
+  box-sizing: border-box;
+  transition: border 0.3s;
+}
+
+.form-group input[type="password"]:focus,
+.form-group textarea:focus {
+  border-color: var(--secondary);
+  outline: none;
+}
+
+.form-group textarea {
+  resize: vertical;
+  min-height: 150px;
+}
+
+.btn-generate {
+  background: var(--primary);
+  color: white;
+  border: none;
+  padding: 15px 30px;
+  font-size: 1.1rem;
+  border-radius: 30px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: all 0.3s ease;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+}
+
+.btn-generate:hover {
+  background: var(--secondary);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 10px rgba(45, 106, 79, 0.3);
+}
+
+.btn-generate:disabled {
+  background: #a3b18a;
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
+}
+
+/* Loader */
+.loader {
+  border: 4px solid rgba(255,255,255,0.3);
+  border-top: 4px solid white;
+  border-radius: 50%;
+  width: 20px;
+  height: 20px;
+  animation: spin 1s linear infinite;
+  display: none;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* 舊版連結 */
+.old-links {
+  margin-top: 20px;
+  padding-top: 20px;
+  border-top: 1px solid #eee;
+  text-align: center;
+}
+
+.old-links a {
+  color: var(--secondary);
+  text-decoration: none;
+  font-weight: bold;
+}
+.old-links a:hover { text-decoration: underline; }
+
+/* ---------------- 學習單樣式 ---------------- */
+.worksheet-container {
+  display: none; /* 預設隱藏，產生後顯示 */
+  margin: 30px auto;
+}
+
+.sheet { 
+  max-width: 900px; 
+  margin: 0 auto; 
+  background: white; 
+  padding: 40px; 
+  border-radius: 10px; 
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1); 
+}
+
+.sheet h1 { text-align: center; color: var(--primary); font-family: 'Noto Serif TC', serif; }
+
+.article-content { 
+  background: var(--primary-light); 
+  padding: 20px; 
+  border-left: 5px solid var(--primary); 
+  line-height: 1.8; 
+  font-size: 1.1rem; 
+  margin-bottom: 30px; 
+}
+
+.section-title { 
+  color: var(--primary); 
+  border-bottom: 2px solid #c8e6c9; 
+  padding-bottom: 5px; 
+  margin-top: 30px; 
+  font-weight: bold; 
+  font-size: 1.2rem; 
+}
+
+/* 閱讀測驗 */
+.q-list { list-style: none; padding: 0; }
+.q-list li { margin-bottom: 15px; line-height: 1.6; }
+.q-list li input { width: 100%; border: none; border-bottom: 1px solid #aaa; margin-top: 10px; outline: none; }
+
+/* 生字區 */
+.vocab-container { 
+  display: flex; 
+  flex-direction: row-reverse; 
+  flex-wrap: wrap; 
+  justify-content: flex-start; 
+  margin-top: 20px; 
+  gap: 10px; 
+}
+
+.v-col {
+  width: 65px;
+  border: 1px solid #555;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: #fff;
+  box-sizing: border-box;
+}
+
+.v-box { width: 100%; border-bottom: 1px solid #555; display: flex; justify-content: center; align-items: center; box-sizing: border-box; }
+.v-box:last-child { border-bottom: none; }
+
+.box-title { height: 25px; font-size: 12px; writing-mode: vertical-rl; padding: 5px 0; color: var(--primary); font-weight: bold; letter-spacing: 2px; }
+.box-empty { height: 50px; } 
+
+.box-char { height: 90px; font-family: 'Noto Serif TC', serif; font-size: 40px; display: flex; flex-direction: row-reverse; justify-content: center; align-items: center; padding: 5px; }
+.ruby-text { display: flex; flex-direction: row-reverse; align-items: center; }
+.zhuyin { font-size: 14px; writing-mode: vertical-rl; margin-right: 5px; font-family: sans-serif; letter-spacing: 2px; }
+
+.box-meta { height: 80px; font-size: 12px; writing-mode: vertical-rl; text-align: center; padding: 5px; line-height: 1.2; }
+
+.box-word { height: 100px; display: flex; flex-direction: column; justify-content: space-between; align-items: center; padding: 5px 0; }
+.word-label { font-size: 12px; color: #666; }
+.word-line { width: 2px; height: 70px; border-left: 1px dashed #999; }
+
+/* 田字格 */
+.tianzi { width: 55px; height: 55px; border: 1px solid var(--primary); position: relative; margin-bottom: -1px; }
+.tianzi::before, .tianzi::after { content: ''; position: absolute; border: 1px dashed #c8e6c9; }
+.tianzi::before { top: 50%; left: 0; right: 0; transform: translateY(-50%); }
+.tianzi::after { left: 50%; top: 0; bottom: 0; transform: translateX(-50%); }
+.hw-target { position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 10; }
+
+/* 數學題 */
+.math-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-top: 15px; }
+.m-card { border: 1px solid #ddd; padding: 15px; border-radius: 8px; background: #fafafa; page-break-inside: avoid; }
+.m-q { margin-bottom: 10px; line-height: 1.5; font-size: 0.95rem; }
+.m-ans { color: #888; font-size: 0.9rem; }
+.m-ans span { display: inline-block; width: 80px; border-bottom: 1px solid #666; }
+
+/* 解答區 */
+.answer-key { margin-top: 40px; padding: 20px; background: #fdf5e6; border: 1px dashed #d4a373; border-radius: 8px; page-break-inside: avoid; }
+.answer-key h2 { color: #d4a373; margin-top: 0; }
+.answer-key ol { margin: 0; padding-left: 20px; }
+
+/* 列印按鈕 */
+.print-btn-container { text-align: center; margin-bottom: 20px; }
+.print-btn { background: #2D6A4F; color: white; padding: 10px 30px; text-align: center; text-decoration: none; border-radius: 20px; cursor: pointer; border: none; font-size: 1.1rem; }
+.print-btn:hover { background: #40916C; }
+
+/* 列印模式設定：隱藏非學習單元素 */
+@media print { 
+  body { background: white; margin: 0; padding: 0; } 
+  .no-print { display: none !important; }
+  header { display: none !important; }
+  .app-container { display: none !important; }
+  .print-btn-container { display: none !important; }
+  .sheet { box-shadow: none; margin: 0; padding: 0; max-width: 100%; } 
+  .answer-key { display: none; } 
+  .vocab-container { gap: 2px; }
+  .v-col { page-break-inside: avoid; }
+}
