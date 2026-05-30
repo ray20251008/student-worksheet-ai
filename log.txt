@@ -1,0 +1,17 @@
+647248c Revert "feat: update to dynamic web app"
+2562f7d feat: update to dynamic web app
+31db4ee Fix flex-wrap print bug truncating elements
+4ebafde Fix: correctly restore 40 vocabulary words
+335378d Update vocab to 40 and math to 30
+2ccd6c5 Update vocab to 40 and math to 30
+fe28c0d Move to homework_01 folder, add reference and rename title
+08e8270 Reduce vocabulary words to 20
+4ccb520 Increase tianzige grids to 1 tracing + 10 blank
+be9320e Increase tianzige grids to 8 to fill the page
+9fef9ba Fix html math grid regex failure and remove zhuyin completely
+b3b97a1 Remove zhuyin and change math to direct calculation
+0a3ae43 Update index.html to be a directory listing
+60b8917 Add vertical vocabulary layout worksheet_01.html
+6382f44 Update worksheet with Tianzige and math answers
+35b844f Add new generated worksheet: worksheet_demo.html
+c1727af Initial commit: 建立每週學習單產生器
