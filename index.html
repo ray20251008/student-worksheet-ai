@@ -372,6 +372,7 @@
     padding: 6px 8px;
     gap: 4px;
     background: #fafff9;
+    flex-wrap: wrap;
   }
   .tian-box {
     width: 34px; height: 34px;
@@ -678,44 +679,41 @@ const MATH_TOPIC_MAP = {
 function getMathPrompt(level, grade) {
   const gradeLabel = grade + '年級';
   const prompts = {
-    add10: `你是台灣國小數學老師，仿照「子由數學小學堂」出題風格，出20題國小${gradeLabel}的「10以內加減法」練習題。
-題目要有生活情境（如：小明有幾顆蘋果、阿姨買了幾朵花），每題包含一段情境描述和一個算式（用□代表答案）。
-每題JSON格式：{"context":"小明有5顆蘋果，又摘了3顆，共有幾顆？","expr":"5 + 3 = □","answer":"8","type":"calc"}`,
+    add10: `你是台灣國小數學老師，出20題國小${gradeLabel}的「10以內加減法」練習題。
+純數字計算，不要文字敘述、不要情境。用□代表答案。
+每題JSON格式：{"expr":"5 + 3 = □","answer":"8","type":"calc"}`,
 
-    add20: `你是台灣國小數學老師，仿照「子由數學小學堂」出題風格，出20題國小${gradeLabel}的「20以內加減法」練習題。
-加入有趣的生活情境，用□代表答案。
-每題格式：{"context":"情境描述","expr":"算式 = □","answer":"答案","type":"calc"}`,
+    add20: `你是台灣國小數學老師，出20題國小${gradeLabel}的「20以內加減法」練習題。
+純數字計算，不要文字敘述、不要情境。用□代表答案。
+每題格式：{"expr":"15 - 7 = □","answer":"8","type":"calc"}`,
 
-    add100: `你是台灣國小數學老師，仿照「子由數學小學堂」出題風格，出20題國小${gradeLabel}的「兩位數加減法」練習題。
-加入生活情境，用□代表答案。
-每題格式：{"context":"情境描述","expr":"算式 = □","answer":"答案","type":"calc"}`,
+    add100: `你是台灣國小數學老師，出20題國小${gradeLabel}的「兩位數加減法」練習題。
+純數字計算，不要文字敘述、不要情境。用□代表答案。
+每題格式：{"expr":"45 + 32 = □","answer":"77","type":"calc"}`,
 
-    mul: `你是台灣國小數學老師，仿照「子由數學小學堂」出題風格，出20題國小${gradeLabel}的乘法練習題（九九乘法範圍）。
-用生活情境描述（如：每盒有幾顆，共幾盒，總共幾顆），用□代表答案。
-每題格式：{"context":"情境描述","expr":"算式 = □","answer":"答案","type":"calc"}`,
+    mul: `你是台灣國小數學老師，出20題國小${gradeLabel}的乘法練習題（九九乘法範圍）。
+純數字計算，不要文字敘述、不要情境。用□代表答案。
+每題格式：{"expr":"7 × 8 = □","answer":"56","type":"calc"}`,
 
-    div: `你是台灣國小數學老師，仿照「子由數學小學堂」出題風格，出20題國小${gradeLabel}的除法練習題（答案為正整數）。
-加入生活情境，用□代表答案。
-每題格式：{"context":"情境描述","expr":"算式 = □","answer":"答案","type":"calc"}`,
+    div: `你是台灣國小數學老師，出20題國小${gradeLabel}的除法練習題（答案為正整數）。
+純數字計算，不要文字敘述、不要情境。用□代表答案。
+每題格式：{"expr":"24 ÷ 6 = □","answer":"4","type":"calc"}`,
 
-    mixed: `你是台灣國小數學老師，仿照「子由數學小學堂」出題風格，出20題國小${gradeLabel}的四則運算混合練習題。
-有情境的文字題，用□代表答案。
-每題格式：{"context":"情境描述","expr":"算式 = □","answer":"答案","type":"calc"}`,
+    mixed: `你是台灣國小數學老師，出20題國小${gradeLabel}的四則運算混合練習題。
+純數字計算，不要文字敘述、不要情境。用□代表答案。
+每題格式：{"expr":"15 + 3 × 4 = □","answer":"27","type":"calc"}`,
 
-    clock: `你是台灣國小數學老師，仿照「子由數學小學堂」出題風格，出20題國小${gradeLabel}的「認識時間」練習題。
-題型包含：看時鐘說出時間、計算經過時間、推算幾點幾分後的時刻。
-用生活情境（上課、吃飯、看電視），答案空白用___表示。
-每題格式：{"context":"情境說明","question":"問題（如：現在是幾點幾分？）","answer":"正確答案","type":"word"}`,
+    clock: `你是台灣國小數學老師，出20題國小${gradeLabel}的「認識時間」練習題。
+純計算或簡短問答，不需要冗長情境。用___表示答案。
+每題格式：{"question":"1小時30分 = ___ 分鐘","answer":"90","type":"word"}`,
 
-    date: `你是台灣國小數學老師，仿照「子由數學小學堂」出題風格，出20題國小${gradeLabel}的「認識日期」練習題。
-題型包含：某月幾天、是星期幾、再過幾天是什麼日期、月份順序等。
-用生活情境，答案空白用___表示。
-每題格式：{"context":"情境說明","question":"問題","answer":"正確答案","type":"word"}`,
+    date: `你是台灣國小數學老師，出20題國小${gradeLabel}的「認識日期」練習題。
+純計算或簡短問答，不需要冗長情境。用___表示答案。
+每題格式：{"question":"平年有 ___ 天","answer":"365","type":"word"}`,
 
-    length: `你是台灣國小數學老師，仿照「子由數學小學堂」出題風格，出20題國小${gradeLabel}的「量長度」練習題。
-題型包含：公分公尺換算、比較長短、計算長度加減。
-用生活情境（量書本、量桌子），答案空白用___表示。
-每題格式：{"context":"情境說明","question":"問題","answer":"正確答案","type":"word"}`,
+    length: `你是台灣國小數學老師，出20題國小${gradeLabel}的「量長度」練習題。
+純計算或簡短問答，不需要冗長情境。用___表示答案。
+每題格式：{"question":"3公尺5公分 = ___ 公分","answer":"305","type":"word"}`,
   };
   return prompts[level];
 }
@@ -786,7 +784,7 @@ ${article}
 
 請完成兩件事，以 JSON 格式回傳：
 1. "questions"：3個閱讀理解問題（簡短、適合${grade}年級），每題物件含 "q"（題目）
-2. "vocab"：從文章中選出10~15個重要生字，每個物件含：
+2. "vocab"：從文章中選出20個重要生字，每個物件含：
    - "char"（單一漢字）
    - "zhuyin"（注音符號，例如 ㄅㄠ）
    - "radical"（部首，例如 木）
@@ -876,14 +874,13 @@ function renderSheet(article, qv, math) {
           </div>
         </div>
         <div class="vocab-card-body">
+          <div style="margin-bottom: 6px;"><span class="lbl">造詞：</span><span style="display:inline-block; width:150px; border-bottom:1px solid #aaa; height: 16px;"></span></div>
           <span class="lbl">造句：</span>${v.example_sentence || ''}
         </div>
         <div class="vocab-practice">
           <div class="tian-box ghost" style="display:flex;align-items:center;justify-content:center;color:#ccc;font-size:1.1rem;font-family:serif;">${v.char}</div>
           <div class="tian-box ghost" style="display:flex;align-items:center;justify-content:center;color:#ddd;font-size:1.1rem;font-family:serif;">${v.char}</div>
-          <div class="tian-box"></div>
-          <div class="tian-box"></div>
-          <div class="tian-box"></div>
+          ${Array(10).fill('<div class="tian-box"></div>').join('')}
         </div>
       </div>`;
   });
@@ -916,7 +913,6 @@ function renderSheet(article, qv, math) {
         <div class="math-card">
           ${num}
           <div class="math-card-body">
-            <div class="math-context">${item.context || ''}</div>
             <div class="math-expr-row">${expr}</div>
           </div>
         </div>`;
