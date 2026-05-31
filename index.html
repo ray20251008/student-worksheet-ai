@@ -292,8 +292,8 @@
   /* vocab cards - 新北市生字簿格式 */
   .vocab-cards {
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 14px;
+    grid-template-columns: 1fr;
+    gap: 16px;
   }
   .vocab-card {
     border: 2px solid var(--border);
@@ -308,8 +308,8 @@
   }
   /* 田字格大字 */
   .vocab-tian {
-    width: 72px; height: 72px;
-    min-width: 72px;
+    width: 90px; height: 90px;
+    min-width: 90px;
     position: relative;
     border-right: 2px solid var(--border);
     display: flex; align-items: center; justify-content: center;
@@ -328,7 +328,7 @@
     width: 1px; background: #ddd;
   }
   .vocab-tian-char {
-    font-size: 2.2rem;
+    font-size: 2.8rem;
     font-weight: 900;
     color: var(--primary);
     font-family: 'Noto Serif TC', serif;
@@ -356,26 +356,24 @@
   .vocab-info-val {
     font-weight: 700;
     color: var(--ink);
-    font-size: .82rem;
+    font-size: 1rem;
   }
-  /* 例詞造句區 */
   .vocab-card-body {
-    padding: 6px 10px 8px;
-    font-size: .8rem;
-    line-height: 1.7;
+    padding: 10px 14px;
+    font-size: 1rem;
+    line-height: 1.8;
     border-bottom: 1px solid var(--border);
   }
-  .vocab-card-body .lbl { color: var(--muted); font-size: .72rem; }
-  /* 練習格 */
+  .vocab-card-body .lbl { color: var(--muted); font-size: .9rem; }
   .vocab-practice {
     display: flex;
-    padding: 6px 8px;
-    gap: 4px;
+    padding: 10px 12px;
+    gap: 6px;
     background: #fafff9;
     flex-wrap: wrap;
   }
   .tian-box {
-    width: 34px; height: 34px;
+    width: 52px; height: 52px;
     border: 1px solid #bbb;
     border-radius: 3px;
     position: relative;
@@ -878,8 +876,8 @@ function renderSheet(article, qv, math) {
           <span class="lbl">造句：</span>${v.example_sentence || ''}
         </div>
         <div class="vocab-practice">
-          <div class="tian-box ghost" style="display:flex;align-items:center;justify-content:center;color:#ccc;font-size:1.1rem;font-family:serif;">${v.char}</div>
-          <div class="tian-box ghost" style="display:flex;align-items:center;justify-content:center;color:#ddd;font-size:1.1rem;font-family:serif;">${v.char}</div>
+          <div class="tian-box ghost" style="display:flex;align-items:center;justify-content:center;color:#ccc;font-size:1.6rem;font-family:serif;">${v.char}</div>
+          <div class="tian-box ghost" style="display:flex;align-items:center;justify-content:center;color:#ddd;font-size:1.6rem;font-family:serif;">${v.char}</div>
           ${Array(10).fill('<div class="tian-box"></div>').join('')}
         </div>
       </div>`;
