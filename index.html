@@ -695,33 +695,25 @@ function getMathPrompt(level, grade) {
 }
 
 async function callGemini(apiKey, systemPrompt, userPrompt) {
-  const modelsToTry = ['gemini-1.5-flash', 'gemini-2.0-flash', 'gemini-2.5-flash'];
-  let lastError = null;
-
-  for (const model of modelsToTry) {
-    const url = `https://generativelanguage.googleapis.com/v1beta/models/${model}:generateContent?key=${apiKey}`;
-    const payload = { contents: [{ parts: [{ text: systemPrompt + '\n\n' + userPrompt }] }] };
-    payload.generationConfig = { responseMimeType: "application/json" };
-    try {
-      const res = await fetch(url, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(payload)
-      });
-      const data = await res.json();
-      if (!res.ok) throw new Error(data.error?.message || 'API Error');
-      if (!data.candidates || data.candidates.length === 0) throw new Error("無效的回覆");
-      return data.candidates[0].content.parts[0].text;
-    } catch (err) {
-      lastError = err;
-      if (err.message.includes('not found') || err.message.includes('not supported')) {
-        continue;
-      } else {
-        throw err;
-      }
-    }
+  const model = 'gemini-1.5-flash';
+  const url = `https://generativelanguage.googleapis.com/v1beta/models/${model}:generateContent?key=${apiKey}`;
+  const payload = { contents: [{ parts: [{ text: systemPrompt + '\n\n' + userPrompt }] }] };
+  payload.generationConfig = { responseMimeType: "application/json" };
+  
+  const res = await fetch(url, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(payload)
+  });
+  
+  const data = await res.json();
+  if (!res.ok) {
+    throw new Error(data.error?.message || 'API Error');
   }
-  throw lastError;
+  if (!data.candidates || data.candidates.length === 0) {
+    throw new Error("無效的回覆");
+  }
+  return data.candidates[0].content.parts[0].text;
 }
 
 function setLoading(on) {
