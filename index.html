@@ -771,7 +771,10 @@ ${article}
 `);
 
     // parse
-    const clean = s => s.replace(/```json|```/g, '').trim();
+    const clean = s => {
+      let m = s.match(/\{[\s\S]*\}|\[[\s\S]*\]/);
+      return m ? m[0] : s;
+    };
     const qvData = JSON.parse(clean(qvRaw));
     const mathData = JSON.parse(clean(mathRaw));
 
