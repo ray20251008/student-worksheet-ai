@@ -289,88 +289,37 @@
     height: 22px;
   }
 
-  /* vocab cards - 新北市生字簿格式 */
+  /* ── 垂直生字簿樣式 (直式) ── */
   .vocab-cards {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 16px;
-  }
-  .vocab-card {
-    border: 2px solid var(--border);
-    border-radius: 10px;
-    overflow: hidden;
-    background: var(--paper);
-  }
-  .vocab-card-top {
     display: flex;
-    align-items: stretch;
-    border-bottom: 2px solid var(--border);
-  }
-  /* 田字格大字 */
-  .vocab-tian {
-    width: 90px; height: 90px;
-    min-width: 90px;
-    position: relative;
-    border-right: 2px solid var(--border);
-    display: flex; align-items: center; justify-content: center;
-    background: white;
-  }
-  .vocab-tian::before {
-    content: '';
-    position: absolute;
-    top: 50%; left: 0; right: 0;
-    height: 1px; background: #ddd;
-  }
-  .vocab-tian::after {
-    content: '';
-    position: absolute;
-    left: 50%; top: 0; bottom: 0;
-    width: 1px; background: #ddd;
-  }
-  .vocab-tian-char {
-    font-size: 2.8rem;
-    font-weight: 900;
-    color: var(--primary);
-    font-family: 'Noto Serif TC', serif;
-    position: relative; z-index: 1;
-    line-height: 1;
-  }
-  /* 右側資訊 */
-  .vocab-info {
-    flex: 1;
-    padding: 6px 10px;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 2px 8px;
-    font-size: .78rem;
-    align-content: center;
-  }
-  .vocab-info-row {
-    display: flex; gap: 4px; align-items: baseline;
-  }
-  .vocab-info-label {
-    color: var(--muted);
-    font-size: .7rem;
-    white-space: nowrap;
-  }
-  .vocab-info-val {
-    font-weight: 700;
-    color: var(--ink);
-    font-size: 1rem;
-  }
-  .vocab-card-body {
-    padding: 10px 14px;
-    font-size: 1rem;
-    line-height: 1.8;
-    border-bottom: 1px solid var(--border);
-  }
-  .vocab-card-body .lbl { color: var(--muted); font-size: .9rem; }
-  .vocab-practice {
-    display: flex;
-    padding: 10px 12px;
-    gap: 6px;
-    background: #fafff9;
     flex-wrap: wrap;
+    flex-direction: row-reverse; /* 從右到左排列 */
+    justify-content: flex-start;
+    gap: 12px;
+  }
+  .vocab-card-vertical {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border: 2px solid var(--border);
+    border-radius: 8px;
+    padding: 8px;
+    background: var(--paper);
+    width: 76px;
+  }
+  .vocab-top-area {
+    display: flex;
+    flex-direction: row-reverse; /* 注音在右，國字在左 */
+    margin-bottom: 8px;
+    height: 52px;
+  }
+  .vocab-zhuyin {
+    writing-mode: vertical-rl;
+    font-size: 0.8rem;
+    font-weight: 700;
+    padding-right: 4px;
+    letter-spacing: 1px;
+    color: var(--ink);
   }
   .tian-box {
     width: 52px; height: 52px;
@@ -379,6 +328,35 @@
     position: relative;
     flex-shrink: 0;
     background: white;
+  }
+  .tian-box::before {
+    content: '';
+    position: absolute;
+    top: 50%; left: 0; right: 0;
+    height: 1px; background: #e0e0e0;
+  }
+  .tian-box::after {
+    content: '';
+    position: absolute;
+    left: 50%; top: 0; bottom: 0;
+    width: 1px; background: #e0e0e0;
+  }
+  .tian-box.ghost { opacity: .45; display: flex; align-items: center; justify-content: center; color: #ccc; font-size: 1.8rem; font-family: 'Noto Serif TC', serif; }
+  .vocab-practice-col {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    margin-bottom: 8px;
+  }
+  .vocab-phrase-area {
+    writing-mode: vertical-rl;
+    height: 140px;
+    width: 100%;
+    border: 1px dashed #aaa;
+    border-radius: 4px;
+    font-size: 0.85rem;
+    padding: 6px;
+    color: var(--muted);
   }
   .tian-box::before {
     content: '';
@@ -638,7 +616,7 @@
 
       <!-- math -->
       <div class="sheet-section">
-        <div class="sheet-section-title">🔢 數學練習（共20題）</div>
+        <div class="sheet-section-title">🔢 數學練習（共30題）</div>
         <div class="math-grid" id="sheet-math"></div>
       </div>
     </div>
@@ -677,39 +655,39 @@ const MATH_TOPIC_MAP = {
 function getMathPrompt(level, grade) {
   const gradeLabel = grade + '年級';
   const prompts = {
-    add10: `你是台灣國小數學老師，出20題國小${gradeLabel}的「10以內加減法」練習題。
+    add10: `你是台灣國小數學老師，出30題國小${gradeLabel}的「10以內加減法」練習題。
 純數字計算，不要文字敘述、不要情境。用□代表答案。
 每題JSON格式：{"expr":"5 + 3 = □","answer":"8","type":"calc"}`,
 
-    add20: `你是台灣國小數學老師，出20題國小${gradeLabel}的「20以內加減法」練習題。
+    add20: `你是台灣國小數學老師，出30題國小${gradeLabel}的「20以內加減法」練習題。
 純數字計算，不要文字敘述、不要情境。用□代表答案。
 每題格式：{"expr":"15 - 7 = □","answer":"8","type":"calc"}`,
 
-    add100: `你是台灣國小數學老師，出20題國小${gradeLabel}的「兩位數加減法」練習題。
+    add100: `你是台灣國小數學老師，出30題國小${gradeLabel}的「兩位數加減法」練習題。
 純數字計算，不要文字敘述、不要情境。用□代表答案。
 每題格式：{"expr":"45 + 32 = □","answer":"77","type":"calc"}`,
 
-    mul: `你是台灣國小數學老師，出20題國小${gradeLabel}的乘法練習題（九九乘法範圍）。
+    mul: `你是台灣國小數學老師，出30題國小${gradeLabel}的乘法練習題（九九乘法範圍）。
 純數字計算，不要文字敘述、不要情境。用□代表答案。
 每題格式：{"expr":"7 × 8 = □","answer":"56","type":"calc"}`,
 
-    div: `你是台灣國小數學老師，出20題國小${gradeLabel}的除法練習題（答案為正整數）。
+    div: `你是台灣國小數學老師，出30題國小${gradeLabel}的除法練習題（答案為正整數）。
 純數字計算，不要文字敘述、不要情境。用□代表答案。
 每題格式：{"expr":"24 ÷ 6 = □","answer":"4","type":"calc"}`,
 
-    mixed: `你是台灣國小數學老師，出20題國小${gradeLabel}的四則運算混合練習題。
+    mixed: `你是台灣國小數學老師，出30題國小${gradeLabel}的四則運算混合練習題。
 純數字計算，不要文字敘述、不要情境。用□代表答案。
 每題格式：{"expr":"15 + 3 × 4 = □","answer":"27","type":"calc"}`,
 
-    clock: `你是台灣國小數學老師，出20題國小${gradeLabel}的「認識時間」練習題。
+    clock: `你是台灣國小數學老師，出30題國小${gradeLabel}的「認識時間」練習題。
 純計算或簡短問答，不需要冗長情境。用___表示答案。
 每題格式：{"question":"1小時30分 = ___ 分鐘","answer":"90","type":"word"}`,
 
-    date: `你是台灣國小數學老師，出20題國小${gradeLabel}的「認識日期」練習題。
+    date: `你是台灣國小數學老師，出30題國小${gradeLabel}的「認識日期」練習題。
 純計算或簡短問答，不需要冗長情境。用___表示答案。
 每題格式：{"question":"平年有 ___ 天","answer":"365","type":"word"}`,
 
-    length: `你是台灣國小數學老師，出20題國小${gradeLabel}的「量長度」練習題。
+    length: `你是台灣國小數學老師，出30題國小${gradeLabel}的「量長度」練習題。
 純計算或簡短問答，不需要冗長情境。用___表示答案。
 每題格式：{"question":"3公尺5公分 = ___ 公分","answer":"305","type":"word"}`,
   };
@@ -782,7 +760,7 @@ ${article}
 
 請完成兩件事，以 JSON 格式回傳：
 1. "questions"：3個閱讀理解問題（簡短、適合${grade}年級），每題物件含 "q"（題目）
-2. "vocab"：從文章中選出20個重要生字，每個物件含：
+2. "vocab"：從文章中盡量選出最多40個重要生字（若文章不夠長則盡量多選），每個物件含：
    - "char"（單一漢字）
    - "zhuyin"（注音符號，例如 ㄅㄠ）
    - "radical"（部首，例如 木）
@@ -798,8 +776,8 @@ ${article}
     const mathPrompt = getMathPrompt(mathLevel, grade);
     const mathRaw = await callGemini(apiKey, SYS, mathPrompt + `
 
-請輸出20題，只輸出純 JSON，不加任何說明，格式為：
-{"math":[...10個題目物件...]}
+請輸出30題，只輸出純 JSON，不加任何說明，格式為：
+{"math":[...30個題目物件...]}
 `);
 
     // parse
@@ -847,39 +825,15 @@ function renderSheet(article, qv, math) {
   vocabWrap.innerHTML = '';
   (qv.vocab || []).forEach(v => {
     vocabWrap.innerHTML += `
-      <div class="vocab-card">
-        <div class="vocab-card-top">
-          <div class="vocab-tian">
-            <span class="vocab-tian-char">${v.char}</span>
-          </div>
-          <div class="vocab-info">
-            <div class="vocab-info-row">
-              <span class="vocab-info-label">注音</span>
-              <span class="vocab-info-val">${v.zhuyin || ''}</span>
-            </div>
-            <div class="vocab-info-row">
-              <span class="vocab-info-label">部首</span>
-              <span class="vocab-info-val">${v.radical || ''}</span>
-            </div>
-            <div class="vocab-info-row">
-              <span class="vocab-info-label">筆畫</span>
-              <span class="vocab-info-val">${v.strokes || ''} 畫</span>
-            </div>
-            <div class="vocab-info-row">
-              <span class="vocab-info-label">例詞</span>
-              <span class="vocab-info-val">${v.example_words || ''}</span>
-            </div>
-          </div>
+      <div class="vocab-card-vertical">
+        <div class="vocab-top-area">
+          <div class="vocab-zhuyin">${v.zhuyin || ''}</div>
+          <div class="tian-box ghost">${v.char}</div>
         </div>
-        <div class="vocab-card-body">
-          <div style="margin-bottom: 6px;"><span class="lbl">造詞：</span><span style="display:inline-block; width:150px; border-bottom:1px solid #aaa; height: 16px;"></span></div>
-          <span class="lbl">造句：</span>${v.example_sentence || ''}
-        </div>
-        <div class="vocab-practice">
-          <div class="tian-box ghost" style="display:flex;align-items:center;justify-content:center;color:#ccc;font-size:1.6rem;font-family:serif;">${v.char}</div>
-          <div class="tian-box ghost" style="display:flex;align-items:center;justify-content:center;color:#ddd;font-size:1.6rem;font-family:serif;">${v.char}</div>
+        <div class="vocab-practice-col">
           ${Array(10).fill('<div class="tian-box"></div>').join('')}
         </div>
+        <div class="vocab-phrase-area">造詞：</div>
       </div>`;
   });
 
