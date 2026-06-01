@@ -699,8 +699,8 @@ function getMathPrompt(level, grade) {
 }
 
 async function callGemini(apiKey, systemPrompt, userPrompt, retries = 6) {
-  // 依據規格文件：強制綁定唯一擁有足夠免費額度與穩定性的 gemini-flash-latest
-  const models = ['gemini-flash-latest'];
+  // 依據規格文件：強制綁定唯一擁有足夠免費額度與穩定性的模型，首選 lite 以獲得最大額度
+  const models = ['gemini-2.5-flash-lite', 'gemini-flash-latest'];
   let lastError;
   
   for (let i = 0; i < retries; i++) {
