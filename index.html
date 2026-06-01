@@ -698,26 +698,42 @@ function getMathPrompt(level, grade) {
   return prompts[level];
 }
 
-async function callGemini(apiKey, systemPrompt, userPrompt) {
-  const model = 'gemini-flash-latest';
-  const url = `https://generativelanguage.googleapis.com/v1beta/models/${model}:generateContent?key=${apiKey}`;
-  const payload = { contents: [{ parts: [{ text: systemPrompt + '\n\n' + userPrompt }] }] };
-  payload.generationConfig = { responseMimeType: "application/json" };
+async function callGemini(apiKey, systemPrompt, userPrompt, retries = 3) {
+  const models = ['gemini-1.5-flash', 'gemini-2.0-flash', 'gemini-1.5-pro'];
+  let lastError;
   
-  const res = await fetch(url, {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify(payload)
-  });
-  
-  const data = await res.json();
-  if (!res.ok) {
-    throw new Error(data.error?.message || 'API Error');
+  for (let i = 0; i < retries; i++) {
+    const model = models[i % models.length];
+    const url = `https://generativelanguage.googleapis.com/v1beta/models/${model}:generateContent?key=${apiKey}`;
+    const payload = { contents: [{ parts: [{ text: systemPrompt + '\n\n' + userPrompt }] }] };
+    payload.generationConfig = { responseMimeType: "application/json" };
+    
+    try {
+      const res = await fetch(url, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload)
+      });
+      
+      const data = await res.json();
+      if (!res.ok) {
+        throw new Error(data.error?.message || 'API Error');
+      }
+      if (!data.candidates || data.candidates.length === 0) {
+        throw new Error("無效的回覆");
+      }
+      return data.candidates[0].content.parts[0].text;
+    } catch (err) {
+      lastError = err;
+      // 若為金鑰錯誤則直接放棄重試
+      if (err.message.includes('API key not valid')) throw err;
+      
+      console.warn(`Model ${model} failed, retrying... (${i+1}/${retries})`, err);
+      // 指數退避等待：1.5秒, 3.0秒
+      await new Promise(resolve => setTimeout(resolve, 1500 * (i + 1)));
+    }
   }
-  if (!data.candidates || data.candidates.length === 0) {
-    throw new Error("無效的回覆");
-  }
-  return data.candidates[0].content.parts[0].text;
+  throw lastError;
 }
 
 function setLoading(on) {
