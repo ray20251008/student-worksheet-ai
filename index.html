@@ -729,15 +729,20 @@ async function callGemini(apiKey, systemPrompt, userPrompt, retries = 6) {
       // 若為金鑰錯誤則直接放棄重試
       if (err.message.includes('API key not valid')) throw err;
       
+      // 如果遇到 High Demand (503) 錯誤，自動切換到珍貴的 2.5 模型 (一天 20 次額度) 救急
+      if (err.message.includes('high demand') && !models.includes('gemini-2.5-flash')) {
+        models.push('gemini-2.5-flash');
+      }
+      
       console.warn(`Model ${model} failed, retrying... (${i+1}/${retries})`, err);
       // 加長退避等待時間：3秒, 6秒, 9秒... 來應對 503 高負載
       await new Promise(resolve => setTimeout(resolve, 3000 * (i + 1)));
     }
   }
   
-  // 如果最後一個錯誤是 high demand，則丟出中文翻譯錯誤
-  if (lastError && lastError.message && lastError.message.includes('high demand')) {
-    throw new Error('目前 Google AI 伺服器處於高負載狀態 (塞車中)，請稍等 1~2 分鐘後再試一次！(伺服器端錯誤，非程式問題)');
+  // 如果連 2.5 備援也失敗，或者 2.5 額度也耗盡，則丟出中文翻譯錯誤
+  if (lastError && lastError.message && (lastError.message.includes('high demand') || lastError.message.includes('Quota'))) {
+    throw new Error('目前主伺服器塞車，且備用的 2.5 版本每日 20 次額度也已用盡。請明天再試，或晚點再嘗試！(Google 伺服器與額度限制)');
   }
   throw lastError;
 }
