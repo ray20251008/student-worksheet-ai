@@ -698,7 +698,7 @@ function getMathPrompt(level, grade) {
   return prompts[level];
 }
 
-async function callGemini(apiKey, systemPrompt, userPrompt, retries = 3) {
+async function callGemini(apiKey, systemPrompt, userPrompt, retries = 6) {
   // 依據規格文件：強制綁定唯一擁有足夠免費額度與穩定性的 gemini-flash-latest
   const models = ['gemini-flash-latest'];
   let lastError;
@@ -730,8 +730,8 @@ async function callGemini(apiKey, systemPrompt, userPrompt, retries = 3) {
       if (err.message.includes('API key not valid')) throw err;
       
       console.warn(`Model ${model} failed, retrying... (${i+1}/${retries})`, err);
-      // 指數退避等待：1.5秒, 3.0秒
-      await new Promise(resolve => setTimeout(resolve, 1500 * (i + 1)));
+      // 加長退避等待時間：3秒, 6秒, 9秒... 來應對 503 高負載
+      await new Promise(resolve => setTimeout(resolve, 3000 * (i + 1)));
     }
   }
   throw lastError;
