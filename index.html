@@ -729,10 +729,19 @@ async function callGemini(apiKey, systemPrompt, userPrompt, retries = 6) {
       // 若為金鑰錯誤則直接放棄重試
       if (err.message.includes('API key not valid')) throw err;
       
+      // 如果遇到 High Demand 錯誤，自動嘗試切換到 8b 模型
+      if (err.message.includes('high demand') && !models.includes('gemini-1.5-flash-8b')) {
+        models.push('gemini-1.5-flash-8b');
+      }
+      
       console.warn(`Model ${model} failed, retrying... (${i+1}/${retries})`, err);
       // 加長退避等待時間：3秒, 6秒, 9秒... 來應對 503 高負載
       await new Promise(resolve => setTimeout(resolve, 3000 * (i + 1)));
     }
+  }
+  
+  if (lastError.message.includes('high demand')) {
+    throw new Error('目前 Google AI 伺服器處於高負載狀態 (塞車中)，請稍等幾分鐘後再試一次！');
   }
   throw lastError;
 }
