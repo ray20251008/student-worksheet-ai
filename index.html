@@ -343,6 +343,7 @@
     left: 50%; top: 0; bottom: 0;
     width: 1px; background: #e0e0e0;
   }
+  .tian-box.first-char { display: flex; align-items: center; justify-content: center; color: #000; font-size: 1.8rem; font-family: 'Noto Sans TC', 'Microsoft JhengHei', sans-serif; font-weight: bold; opacity: 1; }
   .tian-box.ghost { opacity: .45; display: flex; align-items: center; justify-content: center; color: #ccc; font-size: 1.8rem; font-family: 'Noto Serif TC', serif; }
   .vocab-practice-col {
     display: flex;
@@ -360,19 +361,7 @@
     padding: 6px;
     color: var(--muted);
   }
-  .tian-box::before {
-    content: '';
-    position: absolute;
-    top: 50%; left: 0; right: 0;
-    height: 1px; background: #e0e0e0;
-  }
-  .tian-box::after {
-    content: '';
-    position: absolute;
-    left: 50%; top: 0; bottom: 0;
-    width: 1px; background: #e0e0e0;
-  }
-  .tian-box.ghost { opacity: .45; }
+
 
   /* math cards - 子由數學小學堂風格 */
   .math-grid {
@@ -807,6 +796,11 @@ ${article}
       return m ? m[0] : s;
     };
     const qvData = JSON.parse(clean(qvRaw));
+    // Enforce strict 40 limit for vocab
+    if (qvData && qvData.vocab) {
+      qvData.vocab = qvData.vocab.slice(0, 40);
+    }
+
     const mathData = JSON.parse(clean(mathRaw));
 
     renderSheet(article, qvData, mathData);
@@ -852,7 +846,7 @@ function renderSheet(article, qv, math) {
       <div class="vocab-card-vertical">
         <div class="vocab-top-area">
           <div class="vocab-zhuyin">${v.zhuyin || ''}</div>
-          <div class="tian-box ghost">${v.char}</div>
+          <div class="tian-box first-char">${v.char}</div>
         </div>
         <div class="vocab-practice-col">
           ${Array(10).fill('<div class="tian-box"></div>').join('')}
