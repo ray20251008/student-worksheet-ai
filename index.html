@@ -699,7 +699,7 @@ function getMathPrompt(level, grade) {
 }
 
 async function callGemini(apiKey, systemPrompt, userPrompt, retries = 3) {
-  const models = ['gemini-1.5-flash', 'gemini-1.5-flash-8b', 'gemini-1.5-flash'];
+  const models = ['gemini-1.5-flash-latest', 'gemini-flash-latest', 'gemini-1.5-flash-8b-latest'];
   let lastError;
   
   for (let i = 0; i < retries; i++) {
@@ -725,8 +725,8 @@ async function callGemini(apiKey, systemPrompt, userPrompt, retries = 3) {
       return data.candidates[0].content.parts[0].text;
     } catch (err) {
       lastError = err;
-      // 若為金鑰錯誤或模型找不到，不重試
-      if (err.message.includes('API key not valid') || err.message.includes('not found')) throw err;
+      // 若為金鑰錯誤則直接放棄重試
+      if (err.message.includes('API key not valid')) throw err;
       
       console.warn(`Model ${model} failed, retrying... (${i+1}/${retries})`, err);
       // 指數退避等待：1.5秒, 3.0秒
