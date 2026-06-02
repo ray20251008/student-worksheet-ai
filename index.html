@@ -330,21 +330,38 @@
     position: relative;
     flex-shrink: 0;
     background: white;
+    /* 新增：確保裡面的字元置中、粗體、大小合適 */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2.2rem;
+    font-weight: 900;
+    color: #000;
+    font-family: 'Noto Serif TC', serif;
   }
   .tian-box::before {
     content: '';
     position: absolute;
     top: 50%; left: 0; right: 0;
     height: 1px; background: #e0e0e0;
+    z-index: 0;
   }
   .tian-box::after {
     content: '';
     position: absolute;
     left: 50%; top: 0; bottom: 0;
     width: 1px; background: #e0e0e0;
+    z-index: 0;
   }
+  .tian-box span {
+    position: relative;
+    z-index: 1;
+  }
+<<<<<<< HEAD
   .tian-box.first-char { display: flex; align-items: center; justify-content: center; color: #000; font-size: 1.8rem; font-family: 'Noto Sans TC', 'Microsoft JhengHei', sans-serif; font-weight: bold; opacity: 1; }
   .tian-box.ghost { opacity: .45; display: flex; align-items: center; justify-content: center; color: #ccc; font-size: 1.8rem; font-family: 'Noto Serif TC', serif; }
+=======
+>>>>>>> 1f6a324 (style: make the first vocab char bold and ensure it's strictly a single character)
   .vocab-practice-col {
     display: flex;
     flex-direction: column;
@@ -361,7 +378,10 @@
     padding: 6px;
     color: var(--muted);
   }
+<<<<<<< HEAD
 
+=======
+>>>>>>> 1f6a324 (style: make the first vocab char bold and ensure it's strictly a single character)
 
   /* math cards - 子由數學小學堂風格 */
   .math-grid {
@@ -846,7 +866,7 @@ function renderSheet(article, qv, math) {
       <div class="vocab-card-vertical">
         <div class="vocab-top-area">
           <div class="vocab-zhuyin">${v.zhuyin || ''}</div>
-          <div class="tian-box first-char">${v.char}</div>
+          <div class="tian-box first-char"><span>${(v.char || '').charAt(0)}</span></div>
         </div>
         <div class="vocab-practice-col">
           ${Array(10).fill('<div class="tian-box"></div>').join('')}
