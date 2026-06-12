@@ -790,7 +790,7 @@ ${article}
 1. "questions"：3個閱讀理解問題（簡短、適合${grade}年級），每題物件含 "q"（題目）
 2. "vocab"：從文章中盡量選出最多40個重要生字（若文章不夠長則盡量多選），每個物件含：
    - "char"（單一漢字）
-   - "zhuyin"（注音符號，例如 ㄅㄠ）
+   - "zhuyin"（根據文章上下文，只給一個正確的注音，不可給多個，例如 ㄅㄠ）
    - "radical"（部首，例如 木）
    - "strokes"（總筆畫數，數字）
 
@@ -861,7 +861,7 @@ function renderSheet(article, qv, math) {
     vocabWrap.innerHTML += `
       <div class="vocab-card-vertical">
         <div class="vocab-top-area">
-          <div class="vocab-zhuyin">${v.zhuyin || ''}</div>
+          <div class="vocab-zhuyin">${(v.zhuyin || '').trim().split(/[ \n、，,]+/)[0]}</div>
           <div class="tian-box first-char"><span>${(v.char || '').charAt(0)}</span></div>
         </div>
         <div class="vocab-practice-col">
