@@ -861,7 +861,7 @@ function renderSheet(article, qv, math) {
     vocabWrap.innerHTML += `
       <div class="vocab-card-vertical">
         <div class="vocab-top-area">
-          <div class="vocab-zhuyin">${(v.zhuyin || '').trim().split(/[ \n、，,]+/)[0]}</div>
+          <div class="vocab-zhuyin">${(v.zhuyin || '').trim().split(/[ \n、，,／/()（）\|]+/)[0]}</div>
           <div class="tian-box first-char"><span>${(v.char || '').charAt(0)}</span></div>
         </div>
         <div class="vocab-practice-col">
